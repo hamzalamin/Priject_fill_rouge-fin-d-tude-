@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\copy;
 use App\Models\panier;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,16 +14,26 @@ class cart extends Model
     {
         return $this->belongsTo(book::class);
     }
-    public function panier()
-{
-    return $this->belongsTo(panier::class);
-}
+    public function copy()
+    {
+        return $this->belongsTo(copy::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
     protected $table = 'carts'; 
     protected $fillable = [
         'user_id',
         'book_id',
         'qnt',
-        'panier_id',
-
+        'price_of_book',
+        'type',
+        'copy_id',
+        'check',
+        'isReturn',
     ];
 }

@@ -14,10 +14,15 @@ return new class extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('book_id')->constrained()->onDelete('cascade');
-            $table->foreignId('panier_id')->constrained()->onDelete('cascade');
+            $table->foreignId('book_id')->nullable()->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('copy_id')->nullable();
             $table->integer('qnt');
+            $table->string('type');
+            $table->boolean('check')->default(false);
+            $table->boolean('isReturn')->default(false);
             $table->timestamps();
+            $table->foreign('copy_id')->references('id')->on('copies')->onDelete('cascade');
+
         });
     }
 

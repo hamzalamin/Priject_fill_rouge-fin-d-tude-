@@ -14,9 +14,9 @@ class User extends Authenticatable
 {
     return $this->hasMany(Book::class);
 }
-public function paniers()
+public function hasRole($role)
 {
-    return $this->hasMany(panier::class);
+    return $this->roles === $role;
 }
     
     use HasFactory, Notifiable;
@@ -53,5 +53,21 @@ public function paniers()
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+    public function mails()
+    {
+        return $this->hasOne(sendMail::class);
+    }
+    public function copies()
+    {
+        return $this->hasMany(copy::class);
+    }
+    public function cart()
+    {
+        return $this->hasMany(cart::class);
     }
 }

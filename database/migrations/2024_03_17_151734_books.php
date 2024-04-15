@@ -16,12 +16,12 @@ return new class extends Migration
                 $table->string('name');
                 $table->text('description');
                 $table->integer('number');
-                $table->float('price');
+                $table->float('price')->nullable();
                 $table->string('language');
                 $table->string('writer');
                 $table->string('image');
-                $table->enum('type', ['reservation', 'buy']);
-                $table->date('date')->nullable();
+                // $table->enum('type', ['reservation', 'buy']);
+                // $table->date('date')->nullable();
                 $table->foreignId('user_id')->constrained()->onDelete('cascade');
                 $table->foreignId('categorys_id')->constrained()->onDelete('cascade');
                 $table->timestamps(); 

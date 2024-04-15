@@ -14,8 +14,13 @@ class categoryController extends Controller
     public function index()
     {
         //
+        return view('Admin_funcs.AddCategory');
+    }
+    public function index1()
+    {
+        //
         $categorys = category::get();
-        return view('Admin_funcs.AddCategory', compact('categorys'));
+        return view('Admin_funcs.gestion_categorys', compact('categorys'));
     }
 
     /**
@@ -46,7 +51,7 @@ class categoryController extends Controller
             'image' => $imagePath,
         ]);
         
-        return redirect()->route('CategoryForm')->with('success', 'Category created successfully');
+        return redirect()->route('gestionofcategories')->with('success', 'Category created successfully');
     }
 
     /**
@@ -86,17 +91,12 @@ class categoryController extends Controller
     }
     $category->save();
 
-    return redirect()->route('CategoryForm')->with('success', 'Category updated successfully');
+    return redirect()->route('gestionofcategories')->with('success', 'Category updated successfully');
 }
 
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
-{
-    Storage::disk('public')->delete($category->image);
-    $category->delete();
-    return redirect()->route('CategoryForm')->with('success', 'Category deleted successfully');
-}
+
 }

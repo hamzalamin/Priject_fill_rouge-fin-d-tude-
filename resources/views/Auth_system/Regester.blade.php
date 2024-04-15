@@ -1,4 +1,4 @@
-<form action="{{ route('Regester') }}" method="POST">
+{{-- <form action="{{ route('Regester') }}" method="POST">
     @csrf
     <input name="name" type="text">
     <input name="email" type="text">
@@ -7,4 +7,24 @@
 
 
     <button type="submit">Submit</button>
-</form>
+</form> --}}
+
+@include('navbar')
+<section class="login" style="display: flex;">
+    <div>
+    <img src="img/loginback1.jpg" alt="">
+    </div>
+    <form class="regester" action="{{ route('Regester') }}" method="POST">
+        @csrf
+        <label for="">Name</label>
+        <input type="text" name="name">
+        <label for="">Email</label>
+        <input type="email" name="email">
+        <label for="password">Password</label>
+        <input type="password" name="password">
+        <input name="roles" type="hidden" value="Client">
+
+        <button type="submit">sign in</button>
+        <p>if you have already an account <a href="{{ route('login') }}">login now</a></p>
+    </form>
+</section>

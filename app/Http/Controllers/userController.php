@@ -28,7 +28,7 @@ class userController extends Controller
             'password' => $request->password,
             'roles' => $request->roles,
         ]);
-        return view('welcome');
+        return redirect()->route('login')->with('success', 'you can log in right now');
 
     }
     public function create(){
@@ -43,7 +43,7 @@ class userController extends Controller
             $user = Auth::user();
     
             if($user->roles == 'Client'){
-                return redirect()->route('ClientDash');
+                return redirect()->route('home');
             } elseif($user->roles == 'Admin'){
                 return redirect()->route('AdminDash');
             } elseif($user->roles == 'Operatuer'){
