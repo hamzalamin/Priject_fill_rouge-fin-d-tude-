@@ -98,5 +98,10 @@ class categoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    public function destroy(category $category){
+        
+        $category->delete(); 
+        return redirect()->back()->with('success', 'Item removed from cart successfully');
+    }
 
 }

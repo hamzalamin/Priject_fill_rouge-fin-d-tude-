@@ -63,12 +63,12 @@ public function store(Request $request)
         $cartCountsum = cart::where('book_id', $book_id)->where('type', 'buy')->sum('qnt');
         // dd($cartCountsum);
        // Conditional Logic
-        if ($existingCartItem && $existingCartItem->check == false && $cartCountsum < $book_number) {
+        if ($existingCartItem && $existingCartItem->check == false ) {
             $quantityToBuy = min($request->qnt, $book->number); // Calculate the maximum quantity user can buy
             $existingCartItem->increment('qnt', $quantityToBuy);
             $book->number -= $quantityToBuy; // Decrement book quantity by the purchased quantity
             $book->save(); // Save the updated book quantity
-        } elseif ($cartCountsum < $book_number && $request->qnt <= $book->number) {
+        } elseif ($cartCountsum <= $book_number && $request->qnt <= $book->number) {
             // Create a new cart item
             Cart::create([
                 'user_id' => $user->id,

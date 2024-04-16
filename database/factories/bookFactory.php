@@ -32,7 +32,7 @@ class bookFactory extends Factory
                     'price' => $this->faker->randomFloat(2, 10, 100),
                     'language' => $this->faker->name,
                     'writer' => $this->faker->name,
-                    'image' => $this->faker->imageUrl(),
+                    'image' => 'book_img/OUkwn5Y8Ob5DHbJQNFVNRS0lwVCCbVrTGVyTV4qS.jpg',
                     // 'type' => $this->faker->randomElement(['buy', 'reservation']),
                     'user_id' => $this->faker->numberBetween(1, 3), // Assuming you have 10 users
                     'categorys_id' => $this->faker->numberBetween(1, 3), // Assuming you have 10 categories

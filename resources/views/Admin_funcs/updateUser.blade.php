@@ -1,5 +1,5 @@
 @include('navbar')
-<h1 style="display: flex; justify-content: center; margin-bottom: -100px; margin-top: 100px; color: brown; margin-left: 80px;">Edit User</h1>
+<h1 class="EditCategoryTitle">Edit User</h1>
 <section class="form_section">
     <form action="{{ route('users.update', $user) }}" method="POST">
         @csrf

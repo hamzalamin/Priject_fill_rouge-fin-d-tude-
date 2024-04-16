@@ -1,6 +1,6 @@
 @include('navbar')
 <div  class="add">
-    <a href="{{ route('OperatuerForm') }}"><img src="../../img/add.png" alt=""></a>
+    <a href="{{ route('OperatuerForm') }}"><img src="../../img/AddC.png" alt=""></a>
     </div>
     <section class="statistique">
         <div class="card-container_category">
@@ -15,11 +15,11 @@
                     <form action="{{ route('users.destroy', $user) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit"><img src="../../img/delete.png" alt=""></button>
+                        <button type="submit"><img src="../../img/deleteC.png" alt=""></button>
                     </form>
                 </button>
                 <button>
-                    <a href="{{ route('users.edit', $user) }}"><img src="../../img/edit.png" alt=""></a>
+                    <a href="{{ route('users.edit', $user) }}"><img src="../../img/editC.png" alt=""></a>
                 </button>
                 </div>
             </div>

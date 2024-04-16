@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
             'roles' => 'Client',
 
         ]);
-        category::factory()->count(10)->create();
+        category::factory()->count(20)->create();
 
         book::factory()->count(10)->create();
         copy::factory()->count(10)->create();

@@ -2,7 +2,7 @@
 
 <body>
 
-    <nav class="navbar">
+    {{-- <nav class="navbar">
       <div class="container">
         <h1><img src="../../img/logo.png" alt="log" class="logo"></h1>
         <ul class="nav-links">
@@ -37,7 +37,7 @@
       </div>
     </nav>
     <div id="bookCart">
-    </div>
+    </div> --}}
     {{-- @if (Route::has('login')) 
                           @auth  
                           <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
@@ -50,4 +50,48 @@
                           @endif
                           <li><a href="#contact">Contact</a></li>
                         </ul>
-                    </nav> --}}
+        </nav> --}}
+
+
+        <nav class="navbar">
+          <div class="navbar-logo">Logo</div>
+          <ul class="navbar-links">
+            <li><a href="{{ route('home') }}">Home</a></li>
+            <li><a href="{{ route('Books') }}">Books</a></li>
+            <li><a href="#">Services</a></li>
+            @if (Route::has('login')) 
+          @auth
+          @if (auth()->check() && auth()->user()->hasRole('Admin'))  
+          <li><a href="{{ route('AdminDash') }}">Dashboard</a></li>
+          @elseif (auth()->check() && auth()->user()->hasRole('Operatuer'))
+          <li><a href="{{ route('OperatuerDash') }}">Dashboard</a></li>
+          @endif
+          <li><a href="{{ route('ticketForm') }}">Tickets</a></li>
+        </ul>
+         </ul>
+         <a><form method="POST" action="{{ route('logout') }}">
+          @csrf
+          <button type="submit" style=" background: none;
+          color:white;
+          border: none;
+          padding: 0;
+          font: inherit;
+          cursor: pointer;
+          outline: inherit;
+          margin-left: -241px;">Logout</button>
+        </form></a>
+          <a href="{{ route('getCart') }}"><img id="cartIcon" src="../../img/panieC.png" alt=""></a>
+          {{-- <li> --}}
+          
+         {{-- </li>    --}}
+          @endauth
+          @endif
+        
+          {{-- <a href="#"><img id="cartIcon" src="img/panieC.png" alt=""></a> --}}
+        
+          <div class="burger-menu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+        </nav>

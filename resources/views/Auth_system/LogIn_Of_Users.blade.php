@@ -1,37 +1,27 @@
-{{-- <form method="POST" action="{{ route('loginOfUser') }}">
-    @csrf
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email">
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password">
-    </div>
-        @if(session('error'))
-        <div class="alert alert-success" role="alert">
-        {{ session('error') }}
-    </div>
-    @endif
-    <button type="submit">login</button>
-</form> --}}
-
 @include('navbar')
-<section class="login" style="display: flex;">
-    <div>
-    <img src="../img/loginback1.jpg" alt="">
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="{{ route('loginOfUser') }}" method="post">
+            @csrf
+            <div class="form-group">
+                <label for="username">Email:</label>
+                <input  type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+            @if(session('error'))
+            <div class="alert alert-success" role="alert">
+            {{ session('error') }}
+             @endif
+            <p style="color: #00796B">if you dont have an account <a href="{{ route('register') }}">Regester now</a></p>
+        </form>
     </div>
-    <form method="POST" action="{{ route('loginOfUser') }}">
-        @csrf
-        <label for="">Email</label>
-        <input type="email" name="email">
-        <label for="password">Password</label>
-        <input type="password" name="password">
-        @if(session('error'))
-        <div class="alert alert-success" role="alert">
-        {{ session('error') }}
-         @endif
-        <button type="submit" name="button">Log in</button>
-        <p>if you dont have an account <a href="{{ route('register') }}">Regester now</a></p>
-    </form>
-</section>
+
+
+{{-- </section> --}}

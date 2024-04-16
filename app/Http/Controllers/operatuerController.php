@@ -28,8 +28,10 @@ class operatuerController extends Controller
     public function index1()
     {
         //
+        $user = auth()->user()->id;
         $categorys = category::get();
-        $books = book::get();
+        $books = book::where('user_id', $user)->get();
+        // dd($books);
         return view('Operatuer_funcs.gestion_of_books', compact('categorys', 'books'));
     }
 
@@ -138,15 +140,17 @@ class operatuerController extends Controller
             'writer' => 'required',
             'categorys_id' => 'required',
         ]);
+        
     
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('book_img', 'public');
             $book->update(['image' => $imagePath]);
         }
+        // dd($request);
     
-        $book->update($request->all());
-    
-        return redirect()->route('bookForm')->with('success', 'Book updated successfully');
+        $book->update($request->except('image'));
+            
+        return redirect()->route('gestion_of_books')->with('success', 'Book updated successfully');
     }
     
 
@@ -167,8 +171,8 @@ class operatuerController extends Controller
         return view('AllBoks', compact('books', 'copys', 'categorys'));
     }
     public function getAllBooks(){
-        $books = Book::orderBy('id', 'desc')->take(3)->get();
-        $categorys = category::orderBy('id', 'desc')->take(3)->get();
+        $books = Book::orderBy('id', 'desc')->take(4)->get();
+        $categorys = category::orderBy('id', 'desc')->take(15)->get();
         $copys = copy::get();
 
         return view('welcome', compact('books', 'copys', 'categorys'));
