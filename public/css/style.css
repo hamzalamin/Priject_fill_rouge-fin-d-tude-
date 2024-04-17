@@ -33,6 +33,52 @@ body {
   color: #FFFFFF;
   text-decoration: none;
 }
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 20px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: -13px;
+}
+
+.navbar .dropdown-content a:hover, .dropdown:hover .dropbtn {
+  background-color: #ddd;
+  color: black;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 .burger-menu {
   display: none;
@@ -623,7 +669,16 @@ body {
   cursor: pointer;
   font-size: 16px;
 }
-
+.botonaRatin{
+  width: 10%;
+  padding: 8px;
+  background-color: #00796B;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
 .login form button:hover {
   background-color: #4988ac;
 }
@@ -993,11 +1048,12 @@ tr:hover td {
 
 
 .ticket {
-  background-color: #FF9900; /* Orange background color */
+  background-color: #f5b85d; /* Orange background color */
   color: #FFFFFF; /* White text color */
   padding: 20px; /* Padding */
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  margin: 30px;
 }
 
 .card .details {
@@ -1175,7 +1231,48 @@ tr:hover td {
 }
 
 
+.records-container {
+  max-width: 800px;
+  margin-left: 260px;
+  padding: 20px;
+}
 
+.record {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.record-details {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.button-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #d5b900;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.button-container button:hover {
+  background-color: #877a43;
+}
+
+.no-records {
+  font-size: 18px;
+  font-style: italic;
+  margin-left: 325px;
+  margin-top: 62px;
+}
 
 
 

@@ -22,6 +22,7 @@
             <p style="color: #00796B">if you dont have an account <a href="{{ route('register') }}">Regester now</a></p>
         </form>
     </div>
+    <script src="{{ asset('js/main1.js') }}"></script>
 
 
 {{-- </section> --}}

@@ -1,4 +1,41 @@
 @include('navbar')
+<style>
+    .star {
+		font-size: 5vh;
+		cursor: pointer;
+		}
+		
+		.one {
+		color: rgb(248, 73, 73);
+		}
+		
+		.two {
+		color: rgb(242, 248, 74);
+		}
+		
+		.three {
+		
+		color: rgb(149, 228, 12);
+		
+		}
+		
+		.four {
+		color: rgb(105, 187, 12);
+		}
+		
+		.five {
+		color: rgb(24, 159, 14);
+		}
+		
+		
+		.disabled{
+		
+		padding: 8px 20px ;
+		/* margin: 4px; */
+		
+		}
+		
+</style>
 <section class="ticket">
     <h2>TICKET REF:  {{ $reservation->id }}</h2>
     <p>Thank you for using our service!</p>
@@ -20,7 +57,7 @@
                 <span onclick="gfg(4)" class="star">★</span>
                 <span onclick="gfg(5)" class="star">★</span>
             <div  id="output"></div>
-            <button type="submit"  class="done_button">done</button>
+            <button type="submit"  class="botonaRatin">done</button>
             </div> 
         </form>
         @else
@@ -64,6 +101,7 @@
     
     </script>
 
-@include('footer')
+{{-- @include('footer') --}}
 
 
+<script src="{{ asset('js/main1.js') }}"></script>

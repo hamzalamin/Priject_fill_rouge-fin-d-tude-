@@ -25,7 +25,11 @@
         <h2>All Books</h2>
 
     <div class="book_container">
+      @if ($books->isEmpty())
+    <p>No books found.</p>
+    @else
     @foreach ($books as $book)
+    
     <a href="{{ route('singlePage', $book) }}" style="text-decoration: none;"><div class="book_card">
       <img src="{{ asset('storage/' . $book->image) }}" alt="Image">
       <div class="book_info">
@@ -43,6 +47,7 @@
       </div></a>
     </div>
       @endforeach
+      @endif
 
   </section> 
   <div style="margin-top: 10px;"></div>

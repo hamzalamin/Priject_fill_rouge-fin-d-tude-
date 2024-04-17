@@ -1,5 +1,7 @@
 @include('base')
+<style>
 
+</style>
 <body>
 
     {{-- <nav class="navbar">
@@ -61,29 +63,39 @@
             <li><a href="#">Services</a></li>
             @if (Route::has('login')) 
           @auth
-          @if (auth()->check() && auth()->user()->hasRole('Admin'))  
-          <li><a href="{{ route('AdminDash') }}">Dashboard</a></li>
-          @elseif (auth()->check() && auth()->user()->hasRole('Operatuer'))
-          <li><a href="{{ route('OperatuerDash') }}">Dashboard</a></li>
-          @endif
-          <li><a href="{{ route('ticketForm') }}">Tickets</a></li>
-        </ul>
-         </ul>
-         <a><form method="POST" action="{{ route('logout') }}">
-          @csrf
-          <button type="submit" style=" background: none;
-          color:white;
-          border: none;
-          padding: 0;
-          font: inherit;
-          cursor: pointer;
-          outline: inherit;
-          margin-left: -241px;">Logout</button>
-        </form></a>
+
+        
+          <div class="dropdown">
+            <button class="dropbtn">Account 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a><form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" style=" background: none;
+                color:rgb(0, 0, 0);
+                border: none;
+                padding: 0;
+                font: inherit;
+                cursor: pointer;
+                outline: inherit;
+                ">Logout</button>
+              </form></a>
+            
+                @if (auth()->check() && auth()->user()->hasRole('Admin'))  
+                <a href="{{ route('AdminDash') }}">Dashboard</a>
+                @elseif (auth()->check() && auth()->user()->hasRole('Operatuer'))
+                <a href="{{ route('OperatuerDash') }}">Dashboard</a>
+                @endif
+                <a href="{{ route('ticketForm') }}">Tickets</a>
+              
+            </div>
+          </div>
+        </a>
+      </ul>
+    </ul>
           <a href="{{ route('getCart') }}"><img id="cartIcon" src="../../img/panieC.png" alt=""></a>
-          {{-- <li> --}}
           
-         {{-- </li>    --}}
           @endauth
           @endif
         
@@ -95,3 +107,4 @@
             <div class="bar"></div>
           </div>
         </nav>
+        <script src="{{ asset('js/main1.js') }}"></script>

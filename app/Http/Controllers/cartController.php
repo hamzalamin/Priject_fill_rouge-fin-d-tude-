@@ -58,16 +58,17 @@ public function store(Request $request)
         // Check if the book already exists in the user's cart and the current panier
         $existingCartItem = Cart::where('user_id', $user->id)
             ->where('book_id', $request->book_id)
+            ->whxere('type', 'reserve')
             ->first();
 
+
         $cartCountsum = cart::where('book_id', $book_id)->where('type', 'buy')->sum('qnt');
-        // dd($cartCountsum);
-       // Conditional Logic
+
         if ($existingCartItem && $existingCartItem->check == false ) {
             $quantityToBuy = min($request->qnt, $book->number); // Calculate the maximum quantity user can buy
             $existingCartItem->increment('qnt', $quantityToBuy);
-            $book->number -= $quantityToBuy; // Decrement book quantity by the purchased quantity
-            $book->save(); // Save the updated book quantity
+            $book->number -= $quantityToBuy; 
+            $book->save();
         } elseif ($cartCountsum <= $book_number && $request->qnt <= $book->number) {
             // Create a new cart item
             Cart::create([
@@ -76,11 +77,10 @@ public function store(Request $request)
                 'qnt' => $request->qnt,
                 'type' => $request->type,
             ]);
-            // Decrement book quantity by the purchased quantity
+            
             $book->number -= $request->qnt;
-            $book->save(); // Save the updated book quantity
+            $book->save(); 
         } else {
-            // If requested quantity exceeds available stock, prevent reservation
             return redirect()->back()->with('error', 'Requested quantity exceeds available stock.');
         } 
 
@@ -94,6 +94,8 @@ public function store(Request $request)
         $cartname = $request->input('cart_name');
         session(['cartname' => $cartname]);
         Cart::whereIn('id', $cartIds)->update(['check' => true]);
+        Cart::whereIn('id', $cartIds)->where('isReturn', 0)->where('type', 'buy')->update(['isReturn' => true]);
+
         $total = $request->input('total');
         // $cart_id = $request->input('cart_id');
         $user_id = Auth::id();
@@ -110,9 +112,15 @@ public function store(Request $request)
 
     public function destroy(cart $cartItem)
         {
+            if($cartItem->type == 'buy'){
             $book = $cartItem->book; 
             $book->number += $cartItem->qnt; 
             $book->save();
+            } else{
+            $copys = $cartItem->copy; 
+            $copys->number += $cartItem->qnt; 
+            $copys->save();
+            }
 
             $cartItem->delete(); 
 

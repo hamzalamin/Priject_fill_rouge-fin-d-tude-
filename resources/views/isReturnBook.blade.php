@@ -1,26 +1,39 @@
+<style>
+.container_of_isreturn{
+    margin-left: 279px;
+  margin-top: 39px;
+  border: #f7e352 solid 1px;
+  padding: 14px;
+  border-radius: 5px;
+  width: 66%;
+}
+</style>
+
+@include('navbar')
 @if ($checkMail->isEmpty())
-    You haven't sent any email to your clients.
+    <p>You haven't sent any email to your clients.</p>
 @else
     @foreach ($checkMail as $check)
-        {{ $check->user->name }}
-        <br>
-        {{ $check->book->name }}
-        <br>
+    <div class="container_of_isreturn">
+        <p>{{ $check->user->name }}</p>
+        <p>{{ $check->book->name }}</p>
         @if ($check->isSend == 1)
-            You already sent an email to {{ $check->user->name }}.
+            <p>You already sent an email to {{ $check->user->name }}.</p>
         @else
-            You haven't sent an email to {{ $check->user->name }} yet.
+            <p>You haven't sent an email to {{ $check->user->name }} yet.</p>
         @endif
-        <br>
         <form action="{{ route('isReturnUpdate', $check->id) }}" method="POST">
             @csrf
             @method('PUT')
             {{-- <input type="hidden" name="isReturn" value="1"> --}}
-            @if ($check->isReturn == 1)
-                hes return the book
+            @if ($check->book->cart->isReturn == 1)
+                <p>hes return the book</p>
             @else
             <button type="submit">Mark as Returned</button>
             @endif
         </form>
+    </div>
+       
     @endforeach
 @endif
+@include('sideBar')

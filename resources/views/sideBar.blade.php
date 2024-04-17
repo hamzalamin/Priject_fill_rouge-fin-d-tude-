@@ -12,8 +12,11 @@
         <div class="gestion">
             @if (auth()->check() && auth()->user()->hasRole('Operatuer'))
             <a href="{{ route('gestion_of_books') }}">Gestion of books</a>
+            <a href="{{ route('gettreedays') }}">Send Mails</a>
+            <a href="{{ route('getisReturn') }}">They have Return Books</a>
             @endif
         
         </div>
     </div>
 </section>
+<script src="{{ asset('js/main1.js') }}"></script>

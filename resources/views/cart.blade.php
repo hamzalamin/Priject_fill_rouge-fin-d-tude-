@@ -3,7 +3,7 @@
 <section class="cart">
     @if ($cart->isEmpty())
         <div class="empty-cart-message">
-            <p>Your cart is empty.</p>
+            <p>Your panier is empty.</p>
         </div>
     @else
         @foreach ($cart as $cartItem)
@@ -58,3 +58,4 @@
 </section>
 
 {{-- @include('footer') --}}
+<script src="{{ asset('js/main1.js') }}"></script>

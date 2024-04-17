@@ -8,9 +8,11 @@ use App\Models\copy;
 use App\Models\User;
 use App\Models\category;
 use App\Models\sendMail;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Stmt\TryCatch;
 
 class operatuerController extends Controller
 {
@@ -149,7 +151,7 @@ class operatuerController extends Controller
         // dd($request);
     
         $book->update($request->except('image'));
-            
+
         return redirect()->route('gestion_of_books')->with('success', 'Book updated successfully');
     }
     
@@ -189,7 +191,7 @@ class operatuerController extends Controller
 
     // function dial reservation dbook
     public function reservBook(Request $request) {
-        // dd();
+        // dd($request);
         
         $bookId = $request->input('book_id');
         $book = Book::findOrFail($bookId);
@@ -197,15 +199,16 @@ class operatuerController extends Controller
         $copyid = $request->input('copy_id');
         $blackListe = cart::where('user_id', $user->id)
                             ->where('isReturn', 0)
-                            // ->where('check', 1)
+                            ->where('check', 1)
                             ->exists();
         
  
         // Check if the user has already reserved the book
         $existingReservation = Cart::where('user_id', $user->id)
-                                    ->where('book_id', $bookId)
+                                    ->where('book_id', $book)
                                     ->where('type', 'reserv')
                                     ->where('isReturn', 0)
+                                    ->where('check', 1)
                                     ->exists();
 
         if ($existingReservation) {
@@ -257,74 +260,64 @@ class operatuerController extends Controller
 
     }
 
-    public function isReturnUpdate(Request $request,sendMail $id) {
-      $cart =  $id->book->cart;
-      $cart->isReturn = true;
-      $cart->update();
-        foreach ($id->user->cart as $index) {
-            $index->copy->increment('number');
+    public function isReturnUpdate(Request $request, sendMail $id) {
+        $cart = $id->book->cart;
+        $cart->isReturn = true;
+        $cart->update();
+    
+        // Check if $id->user->cart is not null and not empty
+        if ($id->user->cart) {
+            foreach ($id->user->cart as $index) {
+                // Check if $index->copy exists and is not null
+                if ($index->copy) {
+                    $index->copy->increment('number');
+                }
+            }
         }
     
+        // Save changes to $id
         $id->save();
     
         return redirect()->back()->with('success', 'Return status updated successfully.');
     }
     
+    
 
 
 
-    // public function sendMail(Request $request)
-    // {
-    //     // dd($request);
-    //     $user = User::findOrFail($request->user_id);
-    //     $bookName = $request->book_name;
-
-    //     // $request->validate([
-    //     //     // 'user_id' => 'required',
-    //     //     'book_id' => 'required',
-    //     //     'isReturn' => 'required',
-    //     //     'isSend' => 'required',
-            
-    //     // ]);
-    //     sendMail::create([
-    //         'user_id' => $request->user_id,
-    //         'book_id' => $request->book_name,
-    //         'isReturn' => $request->isreturn,
-    //         'isSend' => $request->sendingEmail,
-    //     ]);
-
-    //     // Send email
-    //     Mail::send('emails.Book_mail', ['user' => $user, 'bookName' => $bookName], function ($message) use ($user) {
-    //         $message->to($user->email)->subject('Subject of the email');
-    //     });
-
-    //     return  redirect()->back()->with('success', 'Email sent successfully.');
-    // }
+   
 
 
 
     public function sendMailToAll(Request $request)
     {
         // Loop through all user ids and book names
+    try{
         foreach ($request->user_ids as $index => $userId) {
             
-                $user = User::findOrFail($userId);
-                $bookName = $request->book_names[$index];
-    
-                // Create a record in the sendMail table
-                sendMail::create([
-                    'user_id' => $userId,
-                    'book_id' => $bookName,
-                    'isSend' => $request->sendingEmail,
-                ]);
-    
-                // Send email to each user
-                Mail::send('emails.Book_mail', ['user' => $user, 'bookName' => $bookName], function ($message) use ($user) {
-                    $message->to($user->email)->subject('Subject of the email');
-                });
-        }
-    
-        return  redirect()->back()->with('success', 'Emails sent successfully to all users.');
+            $user = User::findOrFail($userId);
+            $bookName = $request->book_names[$index];
+
+            // Create a record in the sendMail table
+            sendMail::create([
+                'user_id' => $userId,
+                'book_id' => $bookName,
+                'isSend' => $request->sendingEmail,
+            ]);
+
+            // Send email to each user
+            Mail::send('emails.Book_mail', ['user' => $user, 'bookName' => $bookName], function ($message) use ($user) {
+                $message->to($user->email)->subject('Subject of the email');
+            });
+    }
+   
+    return  redirect()->back()->with('success', 'Emails sent successfully to all users.');
+
+    }catch(Exception $e){
+        return  redirect()->back()->with('error', 'you dont have users tosend email for hem.');
+    }
+        
     }
 }
+
 
