@@ -19,6 +19,9 @@ use App\Http\Controllers\ReservationController;
 Route::get('/', [operatuerController::class, 'getAllBooks'])->name('home');
 Route::get('/Books', [operatuerController::class, 'getAllBooks1'])->name('Books');
 Route::get('/search', [cartController::class, 'search'])->name('search');
+Route::get('single/Page/{book}', [operatuerController::class, 'singlePage'])->name('singlePage');
+
+Route::post('/search-books', [cartController::class, 'searchBooks']);
 
 
 
@@ -43,7 +46,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('cart/{cartItem}', [cartController::class, 'destroy'])->name('cart.destroy');
     Route::post('/RateHere/{reservation}', [cartController::class, 'showRatingForm'])->name('RateHere');
     Route::post('/Rate', [cartController::class, 'rateTicket'])->name('rateTicket');
-    Route::get('single/Page/{book}', [operatuerController::class, 'singlePage'])->name('singlePage');
 
 });
 
@@ -73,6 +75,7 @@ Route::middleware(['auth', EnsureUserHasRole::class . ':Operatuer'])->group(func
     Route::get('reserv/{book}', [operatuerController::class, 'reservationform'])->name('reservationform');
     Route::get('gettreedays', [operatuerController::class, 'gettreedays'])->name('gettreedays');
     Route::get('getisReturn', [operatuerController::class, 'isReturn'])->name('getisReturn');
+    Route::get('Stock', [operatuerController::class, 'stockfinish'])->name('getStockFinish');
     // Route::post('sendMail',[operatuerController::class, 'sendMail'])->name('sendMail');
     Route::post('Addbooks/reservation',[operatuerController::class, 'addBookreserv'])->name('addReservBook');
     Route::put('books/{book}', [operatuerController::class, 'update'])->name('books.update');

@@ -17,11 +17,12 @@ class userController extends Controller
     public function Regester(Request $request){
         // dd($request);
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
+            'name' => 'required|min:4',
+            'email' => 'required|email|unique:users',
             'roles' => 'required',
-            'password' => 'required'
+            'password' => 'required|min:8',
         ]);
+        
         User::create([
             'name' => $request->name,
             'email' => $request->email,

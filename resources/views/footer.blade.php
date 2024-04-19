@@ -12,14 +12,13 @@
       <div class="footer-column">
         <h3>About us</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet.</p>
-        <a href="#">About us</a>
-        <a href="#">Contact us</a>
+        <a href="#" style="text-decoration: none;">Contact us</a>
       </div>
       <div class="footer-column">
         <h3>Contact info</h3>
         <p>2 Rue Saidi Rqian et. 2, 2nd floor, Casablanca, Morocco 25100</p>
-        <a href="tel:+2126955322">+212 6 9555322</a>
-        <a href="mailto:librarynoneclick@gmail.com">librarynoneclick@gmail.com</a>
+        <a href="tel:+2126955322" style="text-decoration: none;">+212 6 9555322</a>
+        <a style="text-decoration: none;" href="mailto:librarynoneclick@gmail.com">librarynoneclick@gmail.com</a>
       </div>
       <div class="footer-column">
         <h3>Download App</h3>
@@ -31,6 +30,6 @@
     </div>
   </footer>
   
-<script src="{{ asset('js/main1.js') }}"></script>
+  <script src="{{ asset('jss/main1.js') }}"></script>
 </body>
 </html>

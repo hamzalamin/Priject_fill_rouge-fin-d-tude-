@@ -1,4 +1,10 @@
-<section class="side_bar">
+
+<div class="burger-menu-icon" onclick="toggleSidebar()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+<section class="side_bar" id="sidebar">
     <div class="sidebar-content">
         <h3 style="color: white">Dashboard</h3>
         <div class="gestion">
@@ -14,9 +20,16 @@
             <a href="{{ route('gestion_of_books') }}">Gestion of books</a>
             <a href="{{ route('gettreedays') }}">Send Mails</a>
             <a href="{{ route('getisReturn') }}">They have Return Books</a>
+            <a href="{{ route('getStockFinish') }}">Stock</a>
             @endif
         
         </div>
     </div>
 </section>
-<script src="{{ asset('js/main1.js') }}"></script>
+<script src="{{ asset('jss/main1.js') }}"></script>
+<script>
+    function toggleSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    sidebar.style.display === "none" ? sidebar.style.display = "block" : sidebar.style.display = "none";
+}
+</script>

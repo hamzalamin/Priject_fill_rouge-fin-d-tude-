@@ -1,14 +1,13 @@
 @include('navbar')
     
   
-
   <section class="content">
     <div class="firstdiv">
       <h1>Your Library in One</h1>
       <h1 class="secondH">CLICK</h1>
       @if (Route::has('login'))
       @auth
-        <p class="secondH" style="color: #f4e591">OUR MEDIA</p>
+        <p class="secondH_" style="color: #f4e591">OUR MEDIA</p>
       @else
       <button class="btn"><a href="{{ route('login') }}">Log In</a></button>
       <button class="btn"><a href="{{ route('register') }}">Sign Up</a></button>
@@ -71,10 +70,12 @@
         <div class="user-stats">
           <h2 class="booksCount">+ <span id="bookCount" style="color: rgb(0, 89, 255);">45</span> books</h2>
           <div class="user-images"><img src="img/BookCC.png" alt="Book Image"></div>
-        </div>
-        <div class="book-stats">
-        <h2 class="peopleCount">+ <span id="peopleCountValue" style="color: rgb(0, 89, 255);">24</span> users</h2>
-        <div class="book-images"><img src="img/users.jpg" alt="People Image"></div>
+      </div>
+      <div class="book-stats">
+          <h2 class="peopleCount">+ <span id="peopleCountValue" style="color: rgb(0, 89, 255);">24</span> users</h2>
+          <div class="book-images"><img src="img/users.jpg" alt="People Image"></div>
+
+      </div>
     </div>
   </div>
   <div class="partner-section">
@@ -88,5 +89,5 @@
     </div>
   </div>
 </section>
-
+{{-- <script src="{{ asset('jss/main1.js') }}"></script> --}}
 @include('footer')

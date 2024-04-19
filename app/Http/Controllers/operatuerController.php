@@ -32,7 +32,7 @@ class operatuerController extends Controller
         //
         $user = auth()->user()->id;
         $categorys = category::get();
-        $books = book::where('user_id', $user)->get();
+        $books = book::where('user_id', $user)->paginate(4);
         // dd($books);
         return view('Operatuer_funcs.gestion_of_books', compact('categorys', 'books'));
     }
@@ -54,17 +54,16 @@ class operatuerController extends Controller
         $user = auth()->user()->id;
         // dd($user);
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'number' => 'required',
-            'price' => 'required',
-            'language' => 'required',
-            'writer' => 'required',
-            'image' => 'required',
-            // 'type' => 'required',
-            // 'date' => 'required',
-            'categorys_id' => 'required',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'number' => 'required|integer',
+            'price' => 'required|numeric|gt:0', 
+            'language' => 'required|string|max:50',
+            'writer' => 'required|string|max:50',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'categorys_id' => 'required', 
         ]);
+        
 
         $imagePath = $request->file('image')->store('book_img', 'public');
         // dd($imagePath);
@@ -77,12 +76,10 @@ class operatuerController extends Controller
             'language' => $request->language,
             'writer' => $request->writer,
             'image' => $imagePath,
-            // 'type' => $request->type,
-            // 'date' => $request->date,
             'categorys_id' => $request->categorys_id,
             'user_id' => $user,
         ]);
-        return redirect()->route('bookForm')->with('success', 'book updated successfully');
+        return redirect()->route('gestion_of_books')->with('success', 'book updated successfully');
 
         
     }
@@ -91,8 +88,8 @@ class operatuerController extends Controller
         $user = auth()->user()->id;
         $request->validate([
             'book_id' => 'required',
-            'price_of_reserv' => 'required',
-            'number' => 'required',
+            'price' => 'required|numeric|gt:0',
+            'number' => 'required|integer',
             
         ]);
         copy::create([
@@ -163,15 +160,16 @@ class operatuerController extends Controller
     {
         $book->delete();
 
-        return redirect()->route('bookForm')->with('success', 'Book deleted successfully');
+        return redirect()->route('gestion_of_books')->with('success', 'Book deleted successfully');
     }
 
     public function getAllBooks1(){
-        $books = book::get();
-        $copys = copy::get();
+        $books = book::paginate(6);
+        // $copys = copy::get();
         $categorys = category::get();
-        return view('AllBoks', compact('books', 'copys', 'categorys'));
+        return view('AllBoks', compact('books', 'categorys'));
     }
+
     public function getAllBooks(){
         $books = Book::orderBy('id', 'desc')->take(4)->get();
         $categorys = category::orderBy('id', 'desc')->take(15)->get();
@@ -192,30 +190,32 @@ class operatuerController extends Controller
     // function dial reservation dbook
     public function reservBook(Request $request) {
         // dd($request);
-        
+        $currentDateTime = now();
+        $threeDaysAgo = $currentDateTime->subDays(3);
         $bookId = $request->input('book_id');
         $book = Book::findOrFail($bookId);
         $user = Auth::user();
         $copyid = $request->input('copy_id');
         $blackListe = cart::where('user_id', $user->id)
+                            ->where('copy_id', $copyid)
                             ->where('isReturn', 0)
                             ->where('check', 1)
+                            ->where('updated_at', '<=', $threeDaysAgo)
                             ->exists();
         
  
         // Check if the user has already reserved the book
         $existingReservation = Cart::where('user_id', $user->id)
-                                    ->where('book_id', $book)
+                                    ->where('copy_id', $copyid)
                                     ->where('type', 'reserv')
                                     ->where('isReturn', 0)
-                                    ->where('check', 1)
                                     ->exists();
 
         if ($existingReservation) {
-            return redirect()->back()->with('error', 'You have already reserved this book.');
+            return redirect()->back()->with('error', 'You already reserved this book.');
         }
          elseif ($blackListe){
-            return redirect()->back()->with('sorry', 'You have to return our book first.');
+            return redirect()->back()->with('error', 'You have to return our book first.');
         }
         // Check if there are available copies of the book
         if ($request->input('number') > 0 ) {
@@ -318,6 +318,13 @@ class operatuerController extends Controller
     }
         
     }
+
+    public function stockfinish(){
+        $booksFinish = book::where('number', '<=',  5)->get();
+        // dd();
+        return view('stockFinish' , compact('booksFinish'));
+    }
+
 }
 
 

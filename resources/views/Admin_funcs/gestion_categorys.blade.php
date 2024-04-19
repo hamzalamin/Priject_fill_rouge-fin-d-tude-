@@ -1,4 +1,12 @@
 @include('navbar')
+<style>
+
+</style>
+@if (session('success'))
+    <div class="alert success">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
 <div  class="add">
     <a href="{{ route('CategoryForm') }}"><img src="../img/AddC.png" alt=""></a>
     </div>
@@ -24,7 +32,27 @@
                 </div>
             </div>
             @endforeach
-
+            <div class="pagination">
+                <ul>
+                    @if ($categorys->onFirstPage())
+                        <li class="disabled">&laquo;</li>
+                    @else
+                        <li><a href="{{ $categorys->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+                    @endif
+            
+                    @foreach ($categorys->getUrlRange(1, $categorys->lastPage()) as $page => $url)
+                        <li class="{{ $page == $categorys->currentPage() ? 'active' : '' }}">
+                            <a href="{{ $url }}">{{ $page }}</a>
+                        </li>
+                    @endforeach
+            
+                    @if ($categorys->hasMorePages())
+                        <li><a href="{{ $categorys->nextPageUrl() }}" rel="next">&raquo;</a></li>
+                    @else
+                        <li class="disabled">&raquo;</li>
+                    @endif
+                </ul>
+            </div>
     </section>
 
 

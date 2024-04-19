@@ -11,14 +11,15 @@
 
 @include('navbar')
 @if ($checkMail->isEmpty())
-    <p>You haven't sent any email to your clients.</p>
+    <p  style="margin-left: 40%;">You have no one to send email for hem.</p>
 @else
     @foreach ($checkMail as $check)
     <div class="container_of_isreturn">
         <p>{{ $check->user->name }}</p>
         <p>{{ $check->book->name }}</p>
+       
         @if ($check->isSend == 1)
-            <p>You already sent an email to {{ $check->user->name }}.</p>
+        <p>You send to hem email at :{{ $check->updated_at }}</p>
         @else
             <p>You haven't sent an email to {{ $check->user->name }} yet.</p>
         @endif

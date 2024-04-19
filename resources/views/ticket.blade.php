@@ -1,5 +1,14 @@
 @include('navbar')
-
+@if (session('success'))
+    <div class="alert success">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert error">
+        <p>{{ session('error') }}</p>
+    </div>
+@endif
 @foreach ($ticket as $tic)
 <section class="ticket">
     <h2>TICKET </h2>
@@ -29,8 +38,7 @@
 </section>
 @endforeach
 
-<script src="{{ asset('js/main1.js') }}"></script>
-
+<script src="{{ asset('jss/main1.js') }}"></script>
 
 
 

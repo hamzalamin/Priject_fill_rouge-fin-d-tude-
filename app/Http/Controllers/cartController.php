@@ -38,6 +38,35 @@ class cartController extends Controller
         return view('cart', compact('cart', 'totalPrice'));
     }
     
+    public function searchBooks(Request $request)
+    {
+        // Handle the search logic here
+        // You can access form data like $request->name, $request->categories
+
+        // Example: Perform a search query based on form input
+        $name = $request->input('name');
+        $categories = $request->input('categories');
+
+        $copiesQuery = book::query();
+
+        if (!empty($name)) {
+            $copiesQuery->where('name', 'like', '%'.$name.'%');
+        }
+    
+        if (!empty($categories)) {
+            $copiesQuery->whereIn('categorys_id', $categories);
+        }
+    
+        
+        $books = $copiesQuery->get();
+
+
+        // For demonstration, just return a success message
+        return response()->json(['books' => $books]);
+    }
+
+
+
 
     // buy ktab
 public function store(Request $request)
@@ -58,7 +87,7 @@ public function store(Request $request)
         // Check if the book already exists in the user's cart and the current panier
         $existingCartItem = Cart::where('user_id', $user->id)
             ->where('book_id', $request->book_id)
-            ->whxere('type', 'reserve')
+            ->where('type', 'reserve')
             ->first();
 
 
@@ -105,7 +134,7 @@ public function store(Request $request)
             'total_price' => $total,
 
         ]);
-        return redirect()->route('ticketForm')->with('success', 'Item added to cart successfully');
+        return redirect()->route('ticketForm')->with('success', 'You can rate our service');
 
     }
     
@@ -133,7 +162,7 @@ public function store(Request $request)
         $cartIds = session('cartname');
 
         // dd($updated);
-        $ticket = ticket::where('user_id', $user_id)->get();
+        $ticket = ticket::where('user_id', $user_id)->orderby('created_at', 'desc')->get();
         $bookReserved = cart::where('user_id', $user_id)->where('check', 1)->get();
         // dd($bookReserved);
         return view('ticket', compact('ticket', 'cartIds', 'bookReserved'));
@@ -159,19 +188,14 @@ public function store(Request $request)
         'rating' => $request->rating,
     ]);
     
-        return redirect()->route('ticketForm');
+        return redirect()->route('ticketForm')->with('success', 'thank you for your feadback <3');
 }
 
 
 
 public function search(Request $request) {
-    // Retrieve the search query from the request
     $searchQuery = $request->input('name');
-
-    // Retrieve selected categories from the request
     $selectedCategories = $request->input('categories', []);
-
-    // Query to filter copies based on search query and selected categories
     $copiesQuery = book::query();
 
     if (!empty($searchQuery)) {
@@ -182,16 +206,24 @@ public function search(Request $request) {
         $copiesQuery->whereIn('categorys_id', $selectedCategories);
     }
 
-    // Execute the query
+    
     $copys = $copiesQuery->get();
     $books = $copiesQuery->get();
 
     $categorys = Category::all();
 
-    return view('search-results', compact('copys', 'categorys', 'books'));
+    // return response()->json([$copys , $books, $categorys]);
+    return response()->json($request);
 }
 
-
+public function notif(){
+    $user_id = Auth::id();
+    $countNotif = cart::where('user_id', $user_id)
+                        ->where('check', 0)
+                        ->get()
+                        ->count();
+    
+}
 
 
 

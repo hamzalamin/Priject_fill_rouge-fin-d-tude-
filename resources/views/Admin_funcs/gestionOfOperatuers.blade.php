@@ -1,4 +1,45 @@
 @include('navbar')
+<style>
+    .pagination {
+    margin-top: 20px;
+}
+
+.pagination ul {
+    list-style: none;
+  padding: 0;
+  text-align: center;
+  margin-top: 0px;
+  margin-left: 606px;
+}
+
+.pagination li {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.pagination li a,
+.pagination li.disabled {
+    display: inline-block;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.pagination li.active a {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+</style>
+@if (session('success'))
+    <div class="alert success">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
 <div  class="add">
     <a href="{{ route('OperatuerForm') }}"><img src="../../img/AddC.png" alt=""></a>
     </div>
@@ -24,6 +65,27 @@
                 </div>
             </div>
             @endforeach
-
+            <div class="pagination">
+                <ul>
+                    @if ($users->onFirstPage())
+                        <li class="disabled">&laquo;</li>
+                    @else
+                        <li><a href="{{ $users->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+                    @endif
+            
+                    @foreach ($users->getUrlRange(1, $users->lastPage()) as $page => $url)
+                        <li class="{{ $page == $users->currentPage() ? 'active' : '' }}">
+                            <a href="{{ $url }}">{{ $page }}</a>
+                        </li>
+                    @endforeach
+            
+                    @if ($users->hasMorePages())
+                        <li><a href="{{ $users->nextPageUrl() }}" rel="next">&raquo;</a></li>
+                    @else
+                        <li class="disabled">&raquo;</li>
+                    @endif
+                </ul>
+            </div>
+            
     </section>
 @include('sideBar')

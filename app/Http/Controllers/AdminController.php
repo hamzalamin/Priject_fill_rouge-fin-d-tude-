@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\book;
-use App\Models\category;
 use App\Models\User;
+use App\Models\category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -13,30 +14,37 @@ class AdminController extends Controller
         return view('Admin_funcs.addOperatuer');
     }
     public function index1(){
-        $users = User::where('id', '!=', 1)->get();
+        $users = User::where('id', '!=', 1)->paginate(3); 
         return view('Admin_funcs.gestionOfOperatuers', compact('users'));
     }
     public function store(Request $request){
-        // dd($re  quest);
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
             'roles' => 'required',
             'password' => 'required'
         ]);
-        // $roles = strtolower($request->roles);
-        // dd($roles);
-        User::create([
+    
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'roles' => $request->roles,
             'password' => $request->password,
         ]);
-        return redirect()->route('OperatuerForm')->with('success', 'Category updated successfully');
-
+    
+        $this->sendOperatorCredentialsEmail($user);
+        
+        return redirect()->route('gestionofOperatuers')->with('success', 'User created successfully');
     }
-
-
+    
+    private function sendOperatorCredentialsEmail($user)
+    {
+        Mail::send('emails.mail_operatuer', ['user' => $user], function ($message) use ($user) {
+            $message->to($user->email, $user->name, $user->password)
+                ->subject('Your Operator Credentials');
+        });
+    }
+    
 
     public function edit(User $user)
     {
@@ -68,10 +76,5 @@ class AdminController extends Controller
         $user->delete();
         return redirect()->route('gestionofOperatuers')->with('success', 'User deleted successfully');
     }
-    public function countsForStatic(){
-        $users = User::where('roles', 'Operatuer')->get()->count();
-        $books = book::get()->count();
-        $categorys = category::get()->count();
-        return view('Dashboards.Admin', compact('users', 'books', 'categorys'));
-    }
+  
 }

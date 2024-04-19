@@ -53,4 +53,4 @@
         </div>
         <p style="color: #00796B">if you have already an account <a href="{{ route('login') }}">login now</a></p>
     </form>
-</div><script src="{{ asset('js/main1.js') }}"></script>
+    <script src="{{ asset('jss/main1.js') }}"></script>

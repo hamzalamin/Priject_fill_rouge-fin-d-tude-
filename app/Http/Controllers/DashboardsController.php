@@ -24,7 +24,11 @@ class DashboardsController extends Controller
         if (!Auth::check()) {
             return redirect()->route('login');
         }
-        return view('Dashboards.Opertuer');
+        $user = auth()->user()->id;
+        $yourBooks = book::where('user_id', $user)->get()->count();
+        $books = book::get()->count();
+        $categorys = category::get()->count();
+        return view('Dashboards.Opertuer', compact('books', 'yourBooks', 'categorys'));
     }
     public function ClientDash(){
         if (!Auth::check()) {

@@ -104,4 +104,4 @@
 {{-- @include('footer') --}}
 
 
-<script src="{{ asset('js/main1.js') }}"></script>
+<script src="{{ asset('jss/main1.js') }}"></script>
