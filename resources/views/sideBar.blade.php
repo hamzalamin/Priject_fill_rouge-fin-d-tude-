@@ -1,8 +1,6 @@
 
-<div class="burger-menu-icon" onclick="toggleSidebar()">
-    <span></span>
-    <span></span>
-    <span></span>
+<div class="burger-menu-icon" style="color: black;"  onclick="toggleSidebar()">
+    <span class="bara" style="color: black;">Dashboard</span>
 </div>
 <section class="side_bar" id="sidebar">
     <div class="sidebar-content">
@@ -26,10 +24,10 @@
         </div>
     </div>
 </section>
-<script src="{{ asset('jss/main1.js') }}"></script>
 <script>
     function toggleSidebar() {
     var sidebar = document.getElementById("sidebar");
     sidebar.style.display === "none" ? sidebar.style.display = "block" : sidebar.style.display = "none";
 }
 </script>
+<script src="{{ asset('jss/main1.js') }}"></script>

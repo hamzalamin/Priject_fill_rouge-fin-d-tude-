@@ -38,32 +38,32 @@ class cartController extends Controller
         return view('cart', compact('cart', 'totalPrice'));
     }
     
-    public function searchBooks(Request $request)
-    {
-        // Handle the search logic here
-        // You can access form data like $request->name, $request->categories
+        public function searchBooks(Request $request)
+        {
+            // Handle the search logic here
+            // You can access form data like $request->name, $request->categories
 
-        // Example: Perform a search query based on form input
-        $name = $request->input('name');
-        $categories = $request->input('categories');
+            // Example: Perform a search query based on form input
+            $name = $request->input('name');
+            $categories = $request->input('categories');
 
-        $copiesQuery = book::query();
+            $copiesQuery = book::query();
 
-        if (!empty($name)) {
-            $copiesQuery->where('name', 'like', '%'.$name.'%');
-        }
-    
-        if (!empty($categories)) {
-            $copiesQuery->whereIn('categorys_id', $categories);
-        }
-    
+            if (!empty($name)) {
+                $copiesQuery->where('name', 'like', '%'.$name.'%');
+            }
         
-        $books = $copiesQuery->get();
+            if (!empty($categories)) {
+                $copiesQuery->whereIn('categorys_id', $categories);
+            }
+        
+            
+            $books = $copiesQuery->get();
 
 
-        // For demonstration, just return a success message
-        return response()->json(['books' => $books]);
-    }
+            // For demonstration, just return a success message
+            return response()->json(['books' => $books]);
+        }
 
 
 
@@ -79,22 +79,31 @@ public function store(Request $request)
         
         $request->validate([
             'qnt' => 'required|integer|min:1',
-            'book_id' => 'required|exists:books,id',
+            'book_id' => 'required',
             'type' => 'required',
             // 'price_of_book' => 'required',
         ]);
             $user = Auth::user();
         // Check if the book already exists in the user's cart and the current panier
-        $existingCartItem = Cart::where('user_id', $user->id)
+        $existingCartItem_ = Cart::where('user_id', $user->id)
             ->where('book_id', $request->book_id)
             ->where('type', 'reserve')
+            // ->where('check', 0)
             ->first();
+
+            $existingCartItem = Cart::where('user_id', $user->id)
+            ->where('book_id', $request->book_id)
+            ->where('type', 'buy')
+            // ->where('check', 0)
+            ->first();
+            
+            // $book->save();
 
 
         $cartCountsum = cart::where('book_id', $book_id)->where('type', 'buy')->sum('qnt');
 
         if ($existingCartItem && $existingCartItem->check == false ) {
-            $quantityToBuy = min($request->qnt, $book->number); // Calculate the maximum quantity user can buy
+            $quantityToBuy = min($request->qnt, $book->number); 
             $existingCartItem->increment('qnt', $quantityToBuy);
             $book->number -= $quantityToBuy; 
             $book->save();
@@ -114,7 +123,8 @@ public function store(Request $request)
         } 
 
         return redirect()->back()->with('success', 'Item added to cart successfully');
-    }
+}
+
 
     public function checkout(Request $request)
     {
@@ -193,37 +203,30 @@ public function store(Request $request)
 
 
 
-public function search(Request $request) {
-    $searchQuery = $request->input('name');
-    $selectedCategories = $request->input('categories', []);
-    $copiesQuery = book::query();
+// public function search(Request $request) {
+//     $searchQuery = $request->input('name');
+//     $selectedCategories = $request->input('categories', []);
+//     $copiesQuery = book::query();
 
-    if (!empty($searchQuery)) {
-        $copiesQuery->where('name', 'like', '%'.$searchQuery.'%');
-    }
+//     if (!empty($searchQuery)) {
+//         $copiesQuery->where('name', 'like', '%'.$searchQuery.'%');
+//     }
 
-    if (!empty($selectedCategories)) {
-        $copiesQuery->whereIn('categorys_id', $selectedCategories);
-    }
+//     if (!empty($selectedCategories)) {
+//         $copiesQuery->whereIn('categorys_id', $selectedCategories);
+//     }
 
     
-    $copys = $copiesQuery->get();
-    $books = $copiesQuery->get();
+//     $copys = $copiesQuery->get();
+//     $books = $copiesQuery->get();
 
-    $categorys = Category::all();
+//     $categorys = Category::all();
 
-    // return response()->json([$copys , $books, $categorys]);
-    return response()->json($request);
-}
+//     // return response()->json([$copys , $books, $categorys]);
+//     return response()->json($request);
+// }
 
-public function notif(){
-    $user_id = Auth::id();
-    $countNotif = cart::where('user_id', $user_id)
-                        ->where('check', 0)
-                        ->get()
-                        ->count();
-    
-}
+
 
 
 

@@ -1497,3 +1497,108 @@ margin-left: 606px;
       margin-left: 0;
   }
 }
+
+.burger-menu-icon{
+  display: flex;
+
+}
+
+
+/* Media query to display sidebar only on small screens (phones) */
+@media (max-width: 767px) {
+  .side_bar {
+      display: block;
+      width: 46%;
+      margin-top: 88px;
+  }
+  .side_bar h3 {
+      margin-bottom: 17px;
+      margin-left: 7px;
+      font-family: 'Bitter', sans-serif;
+      font-size: 28px;
+      margin-top: -65px;
+  }
+  .burger-menu-icon{
+      display: flex;
+      /* color: red */
+  }
+  .burger-menu-icon .bara {
+      flex-direction: column;
+      cursor: pointer;
+      margin-top: -2699px;        
+  }
+  /* .burger-menu-icon {
+      flex-direction: column;
+      cursor: pointer;
+      margin-top: -1498px;
+  
+  } */
+  .add img {
+      width: 49px;
+      height: 44px;
+      margin-left: -312px;
+      margin-top: -44px;
+  }
+  .card-container_category {
+    margin-left: -374px;
+    margin-top: -91px;
+    display: block;
+  }
+  .pagination {
+      margin-top: 20px;
+      margin-left: -609px;
+  }
+  .login-container {
+    width: 271px;
+    margin: 110px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(255, 167, 0, 0.9);
+}
+.statistic-item {
+  /* display: block; */
+  text-align: center;
+  padding: 9px;
+  border-radius: 10px;
+  background-color: #5C9E96;
+  margin-left: -331px;
+  margin-right: 25px;
+}
+.statistique {
+  /* display: flex; */
+  justify-content: center;
+  margin-top: 90px;
+  margin-left: 356px;
+}
+.add {
+  display: flex !important;
+  margin-top: 100px;
+  margin-left: 360px;
+}
+
+.card {
+  width: 241px;
+  border: 0.5px solid #ccc;
+  border-radius: 13px;
+  overflow: hidden;
+  margin: 12px;
+}
+.no-records {
+  font-size: 18px;
+  font-style: italic;
+  margin-left: 175px;
+  margin-top: 62px;
+}
+.container_of_isreturn {
+  margin-left: 63px;
+  margin-top: 64px;
+  border: #f7e352 solid 1px;
+  padding: 14px;
+  border-radius: 5px;
+  width: 66%;
+}
+
+
+}
