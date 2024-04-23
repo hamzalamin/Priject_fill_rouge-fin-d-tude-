@@ -60,7 +60,7 @@
                     @endif
                     <input type="hidden" name="cart_id[]" value="{{ $cartItem->id }}">
                 @endforeach
-                <button type='submit'>Checkout</button>
+                <button class="checkoutbutton" type='submit'>Checkout</button>
             </form>
         </div>
     @endif

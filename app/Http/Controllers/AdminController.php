@@ -58,14 +58,12 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            // Add more validation rules as needed
         ]);
 
         // Update the user
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            // Update other fields as needed
         ]);
 
         return redirect()->route('gestionofOperatuers')->with('success', 'User updated successfully');

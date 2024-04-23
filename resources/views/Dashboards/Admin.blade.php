@@ -10,10 +10,16 @@
 <a href="{{ route('getCart') }}">Cart</a>
 <br>
 <a href="{{ route('register') }}">regester</a> --}}
-
+<style>
+    .side_bar.hidden {
+    display: none;
+}
+</style>
 @include('navbar')
-
-<section class="statistique">
+<div class="burger-menu-icon" onclick="toggleSidebar()">
+    <span class="bara">Dashboard</span>
+</div>
+<section class="statistiques-cont">
     <div class="statistic-item">
         <h3>Total Users</h3>
         <p>{{ $users }}</p>
@@ -28,5 +34,12 @@
     </div>
 </section>
 @include('sideBar')
+<script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("hidden"); // Toggle the 'hidden' class
+    }
+</script>
+
 
 

@@ -1,6 +1,13 @@
 
 @include('navbar')
-
+<style>
+    .side_bar.hidden {
+    display: none;
+}
+</style>
+<div class="burger-menu-icon" onclick="toggleSidebar()">
+    <span class="bara">Dashboard</span>
+</div>
 <h1 style="display: flex; justify-content: center; margin-bottom: -100px; margin-top: 100px; color: brown; margin-left: 80px;">Update Book</h1>
 <section class="form_section">
     <form action="{{ route('books.update', $book) }}" method="POST" enctype="multipart/form-data">
@@ -31,5 +38,10 @@
         </form>
         
 </section>
-
+<script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("hidden"); // Toggle the 'hidden' class
+    }
+</script>
 @include('sideBar')

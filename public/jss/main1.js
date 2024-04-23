@@ -13,6 +13,10 @@ function toggleMenu() {
 }
 
 
+// function toggleSidebar() {
+//     var sidebar = document.getElementById("sidebar");
+//     sidebar.classList.toggle("hidden"); 
+// }
 
 
 // transition dyal about 

@@ -12,15 +12,14 @@
 
 <body>
         <nav class="navbar">
-          <div class="navbar-logo">Logo</div>
+          <div class="navbar-logo"><img class="navLogo" src="{{ asset('img/logolibeup_backno.png') }}" alt=""></div>
           <ul class="navbar-links">
             <li><a href="{{ route('home') }}">Home</a></li>
             <li><a href="{{ route('Books') }}">Books</a></li>
-            <li><a href="#">Services</a></li>
+            <li><a href="{{ route('services') }}">Services</a></li>
             @if (Route::has('login')) 
           @auth
-
-        
+          <a href="{{ route('Profile') }}" style="text-decoration: none; color:white;">Profile</a>
           <div class="dropdown">
             <button class="dropbtn">Account 
               <i class="fa fa-caret-down"></i>
@@ -37,7 +36,7 @@
                 outline: inherit;
                 ">Logout</button>
               </form></a>
-            
+              
                 @if (auth()->check() && auth()->user()->hasRole('Admin'))  
                 <a href="{{ route('AdminDash') }}">Dashboard</a>
                 @elseif (auth()->check() && auth()->user()->hasRole('Operatuer'))

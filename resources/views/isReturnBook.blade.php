@@ -1,3 +1,4 @@
+@include('navbar')
 <style>
 .container_of_isreturn{
     margin-left: 279px;
@@ -7,11 +8,17 @@
   border-radius: 5px;
   width: 66%;
 }
+.side_bar.hidden {
+    display: none;
+}
 </style>
+<div class="burger-menu-icon" onclick="toggleSidebar()">
+    <span class="bara">Dashboard</span>
+</div>
 
-@include('navbar')
 @if ($checkMail->isEmpty())
-    <p  style="margin-left: 40%;">You have no one to send email for hem.</p>
+    <p  style="margin-left: 38%;
+    margin-top: 37%;">You have no one to send email for hem.</p>
 @else
     @foreach ($checkMail as $check)
     <div class="container_of_isreturn">
@@ -37,4 +44,11 @@
        
     @endforeach
 @endif
+
 @include('sideBar')
+<script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("hidden"); // Toggle the 'hidden' class
+    }
+</script>

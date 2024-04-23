@@ -15,6 +15,11 @@ document.getElementById('myForm').addEventListener('submit', function(event) {
             dataElement.innerHTML = '';
 
             // Iterate over the books array and create card elements for each book
+            if (books.length === 0) {
+                const noResultMessage = document.createElement('p');
+                noResultMessage.textContent = 'No books found.';
+                dataElement.appendChild(noResultMessage);
+            } else {
             books.forEach(book => {
                 const card = document.createElement('div');
                 card.classList.add('card');
@@ -64,6 +69,7 @@ document.getElementById('myForm').addEventListener('submit', function(event) {
                 card.appendChild(details);
                 dataElement.appendChild(card);
             });
+            }
         })
         .catch(error => {
             console.error(error);

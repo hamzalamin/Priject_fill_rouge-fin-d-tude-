@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class userController extends Controller
@@ -60,5 +62,39 @@ class userController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
+
+    public function Profile_view(){
+        $user = auth()->user()->id;
+        $user_info = User::where('id' , $user)->get();
+        // dd($user_info);
+        return view('profile' , compact('user_info'));
+    }
+
+    public function update_form_info($id)
+    {
+        $info = User::findOrFail($id);
+        $user = auth()->user()->id;
+        $user_info = User::where('id' , $user)->get();
+        return view('profil_edit', ['info' => $info] ,compact('user_info'));
+    }
+    public function update_info(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:6',
+        ]);
+    
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password), // If you're using bcrypt for password hashing
+        ]);
+    
+        // Redirect the user to another page after the update
+        return redirect()->route('Profile', $user->id)->with('success', 'User information updated successfully');
+    }
+    
+    
     
 }

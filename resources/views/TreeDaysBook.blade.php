@@ -1,8 +1,12 @@
 @include('navbar')
 <style>
-
+    .side_bar.hidden {
+    display: none;
+}
 </style>
-
+<div class="burger-menu-icon" onclick="toggleSidebar()">
+    <span class="bara">Dashboard</span>
+</div>
 @if ($threeDaysRecords->isEmpty())
     <p class="no-records">No records found.</p>
 @else
@@ -30,6 +34,11 @@
         </form>
     </div>
 @endif
-
+<script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("hidden"); // Toggle the 'hidden' class
+    }
+</script>
 
 @include('sideBar')

@@ -33,8 +33,13 @@
     color: #fff;
     border-color: #007bff;
 }
-
+.side_bar.hidden {
+    display: none;
+}
 </style>
+<div class="burger-menu-icon" onclick="toggleSidebar()">
+    <span class="bara">Dashboard</span>
+</div>
 @if (session('success'))
     <div class="alert success">
         <p>{{ session('success') }}</p>
@@ -88,4 +93,10 @@
             </div>
             
     </section>
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("hidden"); // Toggle the 'hidden' class
+        }
+    </script>
 @include('sideBar')

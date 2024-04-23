@@ -1,5 +1,12 @@
 @include('navbar')
-
+<style>
+    .side_bar.hidden {
+    display: none;
+}
+</style>
+<div class="burger-menu-icon" onclick="toggleSidebar()">
+    <span class="bara">Dashboard</span>
+</div>
 @if (session('success'))
     <div class="alert success">
         <p>{{ session('success') }}</p>
@@ -31,7 +38,7 @@
                     </form>
                 </button>
                 
-                <button> <a href="{{ route('books.edit', $book) }}"><img src="../img/editC.png" alt=""></a></button>
+                <button> <a href="{{ route('books.edit', $  ) }}"><img src="../img/editC.png" alt=""></a></button>
                 <p>you want to add copies for <a href="{{ route('reservationform', $book) }}">reservation</a> ?</p>
               </div>  
             </div>
@@ -61,4 +68,10 @@
         @endif
     </ul>
 </div>
+<script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("hidden"); // Toggle the 'hidden' class
+    }
+</script>
 @include('sideBar')

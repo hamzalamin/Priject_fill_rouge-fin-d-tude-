@@ -18,7 +18,10 @@ class cartController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $cart = Cart::where('user_id', $user_id)->where('check', false)->get();
+        $cart = Cart::where('user_id', $user_id)
+                    ->where('check', false)
+                    ->orderBy('created_at', 'desc')
+                    ->get();
         // dd($cart);
         // Calculate total price
         $totalPrice = 0;
@@ -40,17 +43,17 @@ class cartController extends Controller
     
         public function searchBooks(Request $request)
         {
-            // Handle the search logic here
-            // You can access form data like $request->name, $request->categories
 
-            // Example: Perform a search query based on form input
             $name = $request->input('name');
             $categories = $request->input('categories');
 
             $copiesQuery = book::query();
 
             if (!empty($name)) {
-                $copiesQuery->where('name', 'like', '%'.$name.'%');
+                $copiesQuery->where('name', 'like', '%'.$name.'%')
+                ->orwhere('writer', 'like', '%'.$name.'%')
+                ->orwhere('language', 'like', '%'.$name.'%');
+
             }
         
             if (!empty($categories)) {
@@ -108,7 +111,7 @@ public function store(Request $request)
             $book->number -= $quantityToBuy; 
             $book->save();
         } elseif ($cartCountsum <= $book_number && $request->qnt <= $book->number) {
-            // Create a new cart item
+            
             Cart::create([
                 'user_id' => $user->id,
                 'book_id' => $request->book_id,
