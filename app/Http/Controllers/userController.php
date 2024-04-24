@@ -70,30 +70,29 @@ class userController extends Controller
         return view('profile' , compact('user_info'));
     }
 
-    public function update_form_info($id)
+    public function addProfilePic(Request $request, $id)
     {
-        $info = User::findOrFail($id);
-        $user = auth()->user()->id;
-        $user_info = User::where('id' , $user)->get();
-        return view('profil_edit', ['info' => $info] ,compact('user_info'));
-    }
-    public function update_info(Request $request, User $user)
-    {
+        // Validate the request
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:6',
+            'image_de_profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
         ]);
-    
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password), // If you're using bcrypt for password hashing
-        ]);
-    
-        // Redirect the user to another page after the update
-        return redirect()->route('Profile', $user->id)->with('success', 'User information updated successfully');
+
+        // Get the profile by ID
+        $profile = User::findOrFail($id);
+
+        // Check if a profile picture is provided
+        if ($request->hasFile('image_de_profile')) {
+            // Store the uploaded image
+            $imagePath = $request->file('image_de_profile')->store('profile_pics', 'public');
+            // Update the profile picture attribute
+            $profile->image_de_profile = $imagePath;
+            $profile->save();
+        }
+
+        // Redirect back or to any other page as needed
+        return redirect()->back()->with('success', 'Profile picture added successfully.');
     }
+    
     
     
     

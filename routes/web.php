@@ -43,10 +43,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/checkout', [cartController::class, 'checkout'])->name('checkout');
     Route::get('ticket', [cartController::class, 'ticket'])->name('ticketForm');
     Route::get('Profile', [userController::class, 'Profile_view'])->name('Profile');
-    Route::get('update_form_info/{id}', [userController::class, 'update_form_info'])->name('update_form_info');
-    Route::post('update_info/{user}', [userController::class, 'update_info'])->name('update_info');
+    // Route::get('update_form_info/{id}', [userController::class, 'update_form_info'])->name('update_form_info');
+    Route::post('/add-profile-pic/{id}', [userController::class, 'addProfilePic'])->name('addProfilePic');
     Route::post('/reserv-book', [operatuerController::class, 'reservBook'])->name('reservBook');
     Route::delete('cart/{cartItem}', [cartController::class, 'destroy'])->name('cart.destroy');
+    Route::delete('cartone/{cartItem}', [cartController::class, 'destroyOne'])->name('cart.destroyOne');
     Route::post('/RateHere/{reservation}', [cartController::class, 'showRatingForm'])->name('RateHere');
     Route::post('/Rate', [cartController::class, 'rateTicket'])->name('rateTicket');
 

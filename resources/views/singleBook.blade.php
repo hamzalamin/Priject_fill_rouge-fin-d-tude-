@@ -1,12 +1,12 @@
 @include('navbar')
 @if (session('success'))
-    <div class="alert success">
+    <div class="success">
         <p>{{ session('success') }}</p>
     </div>
 @endif
 
 @if (session('error'))
-    <div class="alert error">
+    <div class="error">
         <p>{{ session('error') }}</p>
     </div>
 @endif
@@ -19,9 +19,9 @@
         <h2>{{ $book->name }}</h2>
         <p class="price">{{ $book->price }} DH <span class="discounted">{{ $book->price }} DH</span></p>
         <p class="description">Aliquam condimentum dictum gravida. Sed eu odio id lorem fermentum faucibus. Cras tempor...</p>
-        <p class="stock">Language: {{ $book->language }}</p>
-        <p class="stock">Writer: {{ $book->writer }}</p>
-        <p class="stock">Stock: {{ $book->number }}</p>
+        <p class="stock"><span class="textOngras">Language:</span> {{ $book->language }}</p>
+        <p class="stock"><span class="textOngras">Writer:</span> {{ $book->writer }}</p>
+        <p class="stock"><span class="textOngras">Stock:</span> {{ $book->number }} pcs</p>
         <div class="quantity">
             @if ($book->number !== 0)
             <form action="{{ route('cart.store') }}" method="post">
@@ -46,8 +46,8 @@
                 <input type="hidden" name="book_id" value="{{ $book->id }}">
                 @foreach ($copys as $copy)
                 @if ($copy->book_id == $book->id && $copy->number !== 0)
-                <p class="price"><span class="description">Price for reservation: </span>{{ $copy->price_of_reserv }}Dh</p>
-                <p class="description">Stock of reservation: {{ $copy->number }}</p>
+                <p class="price"><span class="description"><span class="textOngras">Price for reservation:</span> {{ $copy->price_of_reserv }}Dh</p>
+                <p class="description"><span class="textOngras">Stock of reservation:</span> {{ $copy->number }} pcs</p>
                 <input type="hidden" readonly name="price" value="{{$copy->price_of_reserv }}">
                 <input type="hidden" name="number" value="{{ $copy->number }}">
                 <input type="hidden" name="copy_id" value="{{ $copy->id }}">

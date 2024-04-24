@@ -47,10 +47,10 @@ body {
   border: none;
   outline: none;
   color: white;
-  padding: 14px 20px;
+  padding: 15px 28px;
   background-color: inherit;
   font-family: inherit;
-  margin: -13px;
+  margin: -15px;
   z-index: 111 !important;
 }
 
@@ -76,11 +76,11 @@ body {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
-  display: block;
+  display: block; /* Changed from display: none; */
   text-align: left;
   z-index: 111 !important;
-
 }
+
 .alert {
   padding: 15px;
   border-radius: 4px;
@@ -89,7 +89,7 @@ body {
 }
 
 .success {
-  background-color: #099E8D;
+  background-color: #82d595;
   color: #ffffff;
   border: 1px solid #c3e6cb;
 }
@@ -191,7 +191,6 @@ body {
       margin-top: -90px !important;
     }
     .secondH_{
-
       display: none;
     }
     
@@ -235,9 +234,11 @@ body {
 
 .checkoutbutton{
   border: none;
-  background-color: #ff2400;
+  background-color: #005A50;
   color: white;
   padding: 10px;
+  width: 164px;
+  border-radius: 6px;
 
 }
   
@@ -293,8 +294,8 @@ body {
   .icons {
     display: flex;
     /* justify-content: space-evenly; */
-    margin-left: 141px;
-    margin-top: -121px;
+    margin-left: 126px;
+    margin-top: -129px;
   }
   
   .icons img {
@@ -665,7 +666,7 @@ body {
 }
 .search-container button {
   padding: 10px 20px;
-  background-color: #d39400;;
+  background-color: #ffd07e;
   color: white;
   border: none;
   border-radius: 5px;
@@ -675,7 +676,7 @@ body {
 }
 
 .search-container button:hover {
-    background-color: #ffcd58;
+    background-color: #8a8989;
 }
 
 .All_books{
@@ -1019,17 +1020,19 @@ tr:hover td {
   border-radius: 20px;
   margin-bottom: 20px;
   display: inline-block;
-  vertical-align: top; /* Aligns the top of the image and text */
-  height: 42px;
+  vertical-align: top;
+  height: 22px;
+  /* margin-left: 10px; */
 }
 .category:hover {
   background-color: #f8b500; /* Change background color on hover */
 }
 .category img {
   border-radius: 50%;
-  width: 40px; /* Adjust size as needed */
-  height: 40px; /* Adjust size as needed */
-  margin-bottom: -12px;
+  width: 40px;
+  height: 38px;
+  margin-bottom: -15px;
+  margin-top: -173px;
 }
 
 .about_ h2 {
@@ -1165,30 +1168,32 @@ tr:hover td {
   display: flex;
   align-items: center;
   padding: 13px;
-  border-bottom: 4px solid #ffa700;
-  margin-top: -22px;
+  border-bottom: 4px solid #00796B;
+  margin-top: 0px;
 }
 
 .cart-item img {
-  width: 50px;
-  height: auto;
-  margin-right: 10px;
+  width: 126px;
+  height: 147px;
+  margin-right: 26px;
 }
 
 .cart-item-details {
   flex: 1;
 }
-
-.cart-item-actions {
-  margin-left: auto;
+.cart-item-details h4{
+  font-family: 'Bitter', sans-serif;
 }
 
+
 .cart-item-actions {
-  background-color: rgb(255, 128, 0);
+  background-color: #00796B;
   color: white;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
+  margin-left: 3px;
+  border-radius: 4px;
 }
 
 .cart-item-actions:hover {
@@ -1202,11 +1207,10 @@ tr:hover td {
 
 
 .ticket {
-  background-color: #f8b500; /* Orange background color */
-  color: #FFFFFF; /* White text color */
-  padding: 20px; /* Padding */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  background-color: #fff;
+  color: #000000;
+  padding: 20px;
+  border-radius: 10px;
   margin: 30px;
 }
 
@@ -1291,11 +1295,14 @@ tr:hover td {
   color: #fff;
   cursor: pointer;
 }
-
+.bottonat_cart{
+  display: flex;
+}
 .message-btn {
   background-color: #ffb222;
-  margin-left: 10px;
+  margin-left: -1px;
   width: 76px;
+  margin-top: 1px;
 }
 
 
@@ -1348,6 +1355,7 @@ tr:hover td {
 .product-details h2 {
   font-size: 24px;
   margin-bottom: 10px;
+  font-family: 'Bitter', sans-serif;
 }
 
 .price {
@@ -1360,9 +1368,12 @@ tr:hover td {
   text-decoration: line-through;
   margin-left: 10px;
 }
-
+.textOngras{
+  font-weight: bold;
+}
 .description {
   font-size: 16px;
+  font-style: oblique;
   margin-bottom: 10px;
 }
 
@@ -1468,9 +1479,12 @@ tr:hover td {
 
 
 .records-container {
-  max-width: 800px;
+  max-width: 786px;
   margin-left: 260px;
-  padding: 20px;
+  padding: 19px;
+  margin-top: 268px;
+  box-shadow: 0 0 10px #ffe359;
+
 }
 
 .record {
@@ -1559,7 +1573,14 @@ margin-left: 606px;
 }
 
 
-
+.container_of_isreturn{
+  margin-left: 279px;
+  margin-top: 261px;
+  border: #f7e352 solid 1px;
+  padding: 14px;
+  border-radius: 5px;
+  width: 59%;
+}
 
 
 
@@ -1605,6 +1626,54 @@ margin-left: 606px;
   
   
   }
+  .success p {
+    margin-left: 50px;
+  }
+  .description {
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-style: oblique;
+  }
+  .product-container {
+    display: flex;
+}
+.stock {
+  font-size: 11px;
+  margin-bottom: -1px;
+  /* font-family: 'Bitter', sans-serif; */
+  font-style: revert-layer;
+}
+.product-image {
+    flex: 0 0 auto; /* Adjust size of image container as needed */
+    margin-right: -316px;
+  }
+  .product-image img {
+    max-width: 291px;
+    border-radius: 10px;
+    margin: 5px;
+  }
+  .botonaRatin {
+    width: 24%;
+    padding: 8px;
+    background-color: #00796B;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 9px;
+  }  
+
+.product-details {
+    flex: 1 1 auto; /* Allow details to expand to fill remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+    margin-top: 350px;
+}
+
+  .error p {
+    margin-left: 50px;
+  }
   .form_section form {
     width: 300px;
     padding: 20px;
@@ -1618,6 +1687,13 @@ margin-left: 606px;
     margin-left: 38%;
     margin-top: 37%;
   }
+  .records-container {
+    max-width: 788px;
+    margin-left: 5px;
+    padding: 19px;
+    margin-top: 24px;
+    box-shadow: 0 0 10px #ffe359;
+}
 
 }
 
@@ -1727,13 +1803,14 @@ margin-left: 606px;
   margin-left: 175px;
   margin-top: 62px;
 }
+
 .container_of_isreturn {
-  margin-left: 63px;
-  margin-top: 64px;
-  border: #f7e352 solid 1px;
-  padding: 14px;
-  border-radius: 5px;
-  width: 66%;
+  margin-left: 46px !important;
+    margin-top: 39px !important;
+    border: #f7e352 solid 1px !important;
+    padding: 14px !important;
+    border-radius: 5px !important;
+    width: 66% !important;
 }
 
 

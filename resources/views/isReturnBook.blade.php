@@ -1,13 +1,13 @@
 @include('navbar')
 <style>
-.container_of_isreturn{
+/* .container_of_isreturn{
     margin-left: 279px;
   margin-top: 39px;
   border: #f7e352 solid 1px;
   padding: 14px;
   border-radius: 5px;
   width: 66%;
-}
+} */
 .side_bar.hidden {
     display: none;
 }
@@ -20,8 +20,9 @@
     <p  style="margin-left: 38%;
     margin-top: 37%;">You have no one to send email for hem.</p>
 @else
-    @foreach ($checkMail as $check)
-    <div class="container_of_isreturn">
+    
+    <div class="container_of_isreturn">*
+        @foreach ($checkMail as $check)
         <p>{{ $check->user->name }}</p>
         <p>{{ $check->book->name }}</p>
        
@@ -40,9 +41,11 @@
             <button type="submit">Mark as Returned</button>
             @endif
         </form>
+        <hr>
+        @endforeach
     </div>
        
-    @endforeach
+   
 @endif
 
 @include('sideBar')

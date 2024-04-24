@@ -6,25 +6,25 @@
 		}
 		
 		.one {
-		color: rgb(248, 73, 73);
+		color: rgb(255, 0, 0);
 		}
 		
 		.two {
-		color: rgb(242, 248, 74);
+		color: rgb(255, 191, 0);
 		}
 		
 		.three {
 		
-		color: rgb(149, 228, 12);
+		color: rgb(255, 153, 0);
 		
 		}
 		
 		.four {
-		color: rgb(105, 187, 12);
+		color: rgb(137, 255, 2);
 		}
 		
 		.five {
-		color: rgb(24, 159, 14);
+		color: rgb(22, 109, 48);
 		}
 		
 		
@@ -39,6 +39,7 @@
 <section class="ticket">
     <h2>TICKET REF:  {{ $reservation->id }}</h2>
     <p>Thank you for using our service!</p>
+    <hr>
     <p>total price : {{ $reservation->total_price }} DH</p>
     {{-- <p>Date: {{ $tic->updated_at }}</p> --}}
     <p>Please keep this ticket safe.</p>
@@ -63,7 +64,7 @@
         @else
         <p style="color:red;">you allready rate this ticket</p>
         @endif
-
+        <hr>
         
     </div>
 </section>

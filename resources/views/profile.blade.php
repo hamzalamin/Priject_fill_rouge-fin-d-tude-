@@ -3,9 +3,9 @@
  <div class="profile-card">
     @foreach ($user_info as $info)
     @if ($info->image_de_profile != null)
-    <img src="{{ asset('storage/' . $info->image_de_profile) }}" alt="Profile Picture">
+        <img src="{{ asset('storage/' . $info->image_de_profile) }}" alt="Profile Picture">
     @else
-    <img src="{{ asset('img/ProfilImg.png') }}" alt="John Doe">
+        <img src="{{ asset('img/ProfilImg.png') }}" alt="John Doe">
     @endif
     <div class="profile-info">
       <h2>{{ $info->name }}</h2>
@@ -22,7 +22,6 @@
         @csrf
       <button class="follow-btn">Logout</button>
       </form>
-      <button class="message-btn">Message</button>
     </div>
   </div>
   <div class="profile-details">
@@ -36,14 +35,12 @@
     <p>(14) 9-621439</p>
     <h2>Address</h2>
     <p>AGADIR, TARRAST 'sidi-fdol' Rue:1025</p>
-    <a href="{{ route('update_form_info', $info->id) }}"><button class="button-edit-profile">Edit Profile</button></a>
-        {{-- <form action="{{ route('update_info', $info->id) }}" method="POST">
-            @csrf
-            <input name="name" value="{{ $info->name }}" type="hidden">
-            <input name="email" value="{{ $info->email }}" type="hidden">
-            <input name="password" value="{{ $info->password }}" type="hidden">
-            <button type="submit" class="button-edit-profile">Edit</button>
-        </form> --}}
+    {{-- <a href="{{ route('update_form_info', $info->id) }}"><button class="button-edit-profile">Edit Profile</button></a> --}}
+    <form action="{{ route('addProfilePic', $info->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="image_de_profile">
+        <button type="submit" class="button-edit-profile">Add Pic</button>
+    </form>
     @endforeach
   </div>
 

@@ -24,6 +24,10 @@
                         <input type="hidden" name="user_ids[]" value="{{ $ourclient->user_id }}">
                         <input type="hidden" name="book_names[]" value="{{ $ourclient->copy_id }}">
                     </div>
+                @else
+                <div class="record">
+                 there is no one 
+                </div>
                 @endif
             @endforeach
             <div class="button-container">

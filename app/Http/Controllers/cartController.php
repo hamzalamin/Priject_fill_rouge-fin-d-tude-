@@ -62,9 +62,6 @@ class cartController extends Controller
         
             
             $books = $copiesQuery->get();
-
-
-            // For demonstration, just return a success message
             return response()->json(['books' => $books]);
         }
 
@@ -168,7 +165,38 @@ public function store(Request $request)
 
             return redirect()->route('getCart')->with('success', 'Item removed from cart successfully');
         }
-
+    public function destroyOne(cart $cartItem)
+    {
+        if($cartItem->qnt > 1) {
+            if($cartItem->type == 'buy') {
+                $book = $cartItem->book;
+                $book->number += 1;
+                $book->save();
+            } else {
+                $copys = $cartItem->copy;
+                $copys->number += 1;
+                $copys->save();
+            }
+    
+            $cartItem->qnt -= 1;
+            $cartItem->save();
+        } else {
+            if($cartItem->type == 'buy') {
+                $book = $cartItem->book;
+                $book->number += $cartItem->qnt;
+                $book->save();
+            } else {
+                $copys = $cartItem->copy;
+                $copys->number += $cartItem->qnt;
+                $copys->save();
+            }
+    
+            $cartItem->delete();
+        }
+    
+        return redirect()->route('getCart')->with('success', 'Item removed from cart successfully');
+    }
+    
 
     public function ticket(){
         $user_id = Auth::id();

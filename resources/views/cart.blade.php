@@ -21,14 +21,22 @@
                     <img src="{{ asset('storage/' . $cartItem->book->image) }}" alt="Book Image">
                     <div class="cart-item-details">
                         <h4>{{ $cartItem->book->name }}</h4>
-                        <p>{{ $cartItem->book->price }} DH</p>
+                        <p>{{ $cartItem->book->price }} DH  <span class="discounted">{{ $cartItem->book->price + 10}} DH</span></p>
                         <p>Quantity : {{ $cartItem->qnt }} pcs</p>
                         <p>Total: {{ $cartItem->book->price * $cartItem->qnt }} DH</p>
-                        <form action="{{ route('cart.destroy', $cartItem) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="cart-item-actions">DELETE</button>
-                        </form>
+                        <div class="bottonat_cart">
+                            <form action="{{ route('cart.destroy', $cartItem) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="cart-item-actions">DELETE ALL</button>
+                            </form>
+                            <form action="{{ route('cart.destroyOne', $cartItem) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="cart-item-actions">DELETE ONE</button>
+                            </form>
+                        </div>
+                        
                     </div>
                 </div>
             @else
@@ -36,7 +44,7 @@
                     <img src="{{ asset('storage/' . $cartItem->copy->book->image) }}" alt="Book Image">
                     <div class="cart-item-details">
                         <h4>{{ $cartItem->copy->book->name }}</h4>
-                        <p>{{ $cartItem->copy->price_of_reserv }} DH</p>
+                        <p>{{ $cartItem->copy->price_of_reserv }} DH <span class="discounted">{{ $cartItem->copy->price_of_reserv + 10}} DH</span></p>
                         <p>You have to return this book after 3 days</p>
                         <form action="{{ route('cart.destroy' , $cartItem) }}" method="POST">
                             @csrf

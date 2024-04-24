@@ -4,7 +4,7 @@ document.getElementById('myForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const formData = new FormData(this);
-
+    
     axios.post('/search-books', formData)
         .then(response => {
             const books = response.data.books;

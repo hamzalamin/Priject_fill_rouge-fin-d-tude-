@@ -249,7 +249,7 @@ class operatuerController extends Controller
                                 ->where('updated_at', '<=', $threeDaysAgo)
                                 ->get();
         $checkIfWeSendMail = sendMail::where('isSend', 1)->get();
-
+        // dd($threeDaysRecords);
         return view('TreeDaysBook', compact('threeDaysRecords', 'checkIfWeSendMail'));
     }
 

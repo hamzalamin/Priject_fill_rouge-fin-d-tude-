@@ -7,7 +7,7 @@
       <h1 class="secondH">CLICK</h1>
       @if (Route::has('login'))
       @auth
-        <p class="secondH_" style="color: #f4e591">OUR MEDIA</p>
+        <p class="secondH_" style="color: #000000">OUR MEDIA</p>
       @else
       <button class="btn"><a href="{{ route('login') }}">Log In</a></button>
       <button class="btn"><a href="{{ route('register') }}">Sign Up</a></button>
