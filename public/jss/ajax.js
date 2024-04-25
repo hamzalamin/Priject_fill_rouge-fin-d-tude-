@@ -4,7 +4,7 @@ document.getElementById('myForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const formData = new FormData(this);
-    
+
     axios.post('/search-books', formData)
         .then(response => {
             const books = response.data.books;
@@ -48,9 +48,9 @@ document.getElementById('myForm').addEventListener('submit', function(event) {
                     const star = document.createElement('span');
                     star.classList.add('star');
                     if (i < book.rating) {
-                        star.textContent = '★'; // Filled star
+                        star.textContent = '★'; 
                     } else {
-                        star.textContent = '☆'; // Empty star
+                        star.textContent = '☆'; 
                     }
                     ratings.appendChild(star);
                 }

@@ -19,7 +19,7 @@ class categoryController extends Controller
     public function index1()
     {
         //
-        $categorys = category::paginate(6);
+        $categorys = Category::orderBy('created_at', 'desc')->paginate(6);
         return view('Admin_funcs.gestion_categorys', compact('categorys'));
     }
 

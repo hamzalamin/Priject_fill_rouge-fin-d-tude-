@@ -103,9 +103,22 @@
       </ul>
   </div>
   </section> 
-  <div style="margin-top: 10px;"></div>
+
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+<section class="books" style="margin-top: -16px;">
+  <div class="partner-section">
+    <h3>Partners</h3>
+    <div class="partner-logos">
+      <img src="img/partner1.png" alt="">
+      <img src="img/trello.png" alt="">
+      <img src="img/jira.png" alt="">
+      <img src="img/partner2.png" alt="">
+      <img src="img/partner3.png" alt="">
+    </div>
+  </div>
+</section>
 <script src="{{ asset('jss/ajax.js') }}"></script>
 {{-- <script src="{{ asset('js') }}"></script> --}}
+
 @include('footer')

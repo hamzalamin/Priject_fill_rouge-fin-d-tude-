@@ -60,14 +60,16 @@ public function hasRole($role)
     }
     public function mails()
     {
-        return $this->hasOne(sendMail::class);
+        return $this->hasOne(sendMail::class, 'user_id');
     }
+
     public function copies()
     {
         return $this->hasMany(copy::class);
     }
     public function cart()
     {
-        return $this->hasMany(cart::class);
+        return $this->hasMany(cart::class , 'user_id');
     }
+    
 }

@@ -1,27 +1,3 @@
-{{-- <form action="{{ route('addBook') }}" method="POST" enctype="multipart/form-data">
-@csrf
-    <label for="name">name</label>
-    <input type="text" name="name">
-    <label for="description">description</label>
-    <input type="text" name="description">
-    <label for="number">number</label>
-    <input type="number" name="number">
-    <label for="price">price</label>
-    <input type="float" name="price">
-    <label for="language">language</label>
-    <input type="text" name="language">
-    <label for="writer">writer</label>
-    <input type="text" name="writer">
-    <label for="image">image</label>
-    <input type="file" name="image">
-    <select name="categorys_id" id="">
-        @foreach ($categorys as $category)
-        <option value="{{ $category->id }}">{{ $category->name }}</option>
-        @endforeach
-    </select>
-    <button type="submit">submit</button>
-</form> --}}
-
 @include('navbar')
 <style>
     .side_bar.hidden {

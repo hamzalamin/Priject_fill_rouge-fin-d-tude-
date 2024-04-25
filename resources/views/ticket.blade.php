@@ -10,6 +10,9 @@
         <p>{{ session('error') }}</p>
     </div>
 @endif
+@if ($ticket->isEmpty())
+<p style="display: flex; justify-content: center;">You have no tickets</p>
+@else
 @foreach ($ticket as $tic)
 <section class="ticket">
     <h2>TICKET {{ $tic->id }}</h2>
@@ -40,6 +43,7 @@
 <hr style="color: rgb(0, 0, 0);">
 
 @endforeach
+@endif
 
 <script src="{{ asset('jss/main1.js') }}"></script>
 

@@ -8,7 +8,7 @@
 <div class="burger-menu-icon" onclick="toggleSidebar()">
     <span class="bara">Dashboard</span>
 </div>
-<h1 style="display: flex; justify-content: center; margin-bottom: -100px; margin-top: 100px; color: brown; margin-left: 80px;">Update Book</h1>
+{{-- <h1 style="display: flex; justify-content: center; margin-bottom: -100px; margin-top: 100px; color: brown; margin-left: 80px;">Update Book</h1> --}}
 <section class="form_section">
     <form action="{{ route('books.update', $book) }}" method="POST" enctype="multipart/form-data">
         @csrf

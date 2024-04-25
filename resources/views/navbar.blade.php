@@ -14,12 +14,12 @@
         <nav class="navbar">
           <div class="navbar-logo"><img class="navLogo" src="{{ asset('img/logolibeup_backno.png') }}" alt=""></div>
           <ul class="navbar-links">
-            <li><a href="{{ route('home') }}">Home</a></li>
-            <li><a href="{{ route('Books') }}">Books</a></li>
-            <li><a href="{{ route('services') }}">Services</a></li>
+            <li><a class="homenav" href="{{ route('home') }}">Home</a></li>
+            <li><a class="homenav" href="{{ route('Books') }}">Books</a></li>
+            <li><a class="homenav" href="{{ route('services') }}">Services</a></li>
             @if (Route::has('login')) 
           @auth
-          <a href="{{ route('Profile') }}" style="text-decoration: none; color:white;">Profile</a>
+          <a href="{{ route('Profile') }}" class="dozihna" style="text-decoration: none; color:white;">Profile</a>
           <div class="dropdown">
             <button class="dropbtn">Account 
               <i class="fa fa-caret-down"></i>
@@ -58,11 +58,11 @@
           @endif
         
           {{-- <a href="#"><img id="cartIcon" src="img/panieC.png" alt=""></a> --}}
-        
           <div class="burger-menu" onclick="toggleMenu()">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
           </div>
         </nav>
-        {{-- <script src="{{ asset('jss/main1.js') }}"></script> --}}
+          
+        <script src="{{ asset('jss/main1.js') }}"></script>

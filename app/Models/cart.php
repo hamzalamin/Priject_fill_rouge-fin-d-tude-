@@ -14,16 +14,24 @@ class cart extends Model
     {
         return $this->belongsTo(book::class);
     }
-    public function copy()
-    {
-        return $this->belongsTo(copy::class);
-    }
+    // public function copy()
+    // {
+    //     return $this->belongsTo(copy::class);
+    // }
 
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class, 'user_id');
+    // }
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    public function copy()
+    {
+        return $this->belongsTo(Copy::class);
+    }
 
     protected $table = 'carts'; 
     protected $fillable = [

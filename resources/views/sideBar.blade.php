@@ -3,6 +3,7 @@
 
 <section class="side_bar" id="sidebar">
     <div class="sidebar-content">
+        {{-- <img src="{{ asset('img/editC.png') }}" alt=""> --}}
         <h3 style="color: white">Dashboard</h3>
         <div class="gestion">
             @if (auth()->check() && auth()->user()->hasRole('Admin'))

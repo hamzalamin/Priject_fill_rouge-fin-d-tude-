@@ -1,9 +1,5 @@
 @include('navbar')
 <style>
-.hs{
-    font-family: "Brush Script MT", cursive;
-    text-shadow: 2px 2px 4px #f19800;
-} 
 
 </style>
 <header class="section-title">
@@ -124,6 +120,5 @@
 
     showTestimonial(testimonialIndex);
 });
-
 </script>
 @include('footer')

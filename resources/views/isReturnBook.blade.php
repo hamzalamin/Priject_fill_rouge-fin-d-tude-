@@ -15,35 +15,41 @@
 <div class="burger-menu-icon" onclick="toggleSidebar()">
     <span class="bara">Dashboard</span>
 </div>
-
+{{-- {{ dd($checkMail) }} --}}
 @if ($checkMail->isEmpty())
     <p  style="margin-left: 38%;
     margin-top: 37%;">You have no one to send email for hem.</p>
 @else
-    
-    <div class="container_of_isreturn">*
-        @foreach ($checkMail as $check)
-        <p>{{ $check->user->name }}</p>
-        <p>{{ $check->book->name }}</p>
-       
-        @if ($check->isSend == 1)
-        <p>You send to hem email at :{{ $check->updated_at }}</p>
-        @else
-            <p>You haven't sent an email to {{ $check->user->name }} yet.</p>
-        @endif
-        <form action="{{ route('isReturnUpdate', $check->id) }}" method="POST">
-            @csrf
-            @method('PUT')
-            {{-- <input type="hidden" name="isReturn" value="1"> --}}
-            @if ($check->book->cart->isReturn == 1)
-                <p>hes return the book</p>
-            @else
-            <button type="submit">Mark as Returned</button>
-            @endif
-        </form>
-        <hr>
-        @endforeach
+    <div class="container_of_isreturn">
+        Historique
+<hr>
+@foreach ($checkMail as $check)
+    <p>User: {{ $check->user->name }}</p>
+    <p>Book: {{ $check->copy->book->name }}</p>
+    <p>isReturn: {{ $check->copy->cart->isReturn }}</p> 
+
+@if ($check->isSend == 1)
+    <p>You sent an email to {{ $check->user->name }} at: {{ $check->updated_at }}</p>
+@else
+    <p>You haven't sent an email to {{ $check->user->name }} yet.</p>
+@endif
+
+    <p>Conditional evaluation: {{ $check->copy->cart->isReturn  == 1 ? 'true' : 'false' }}</p>
+
+@if ($check->copy->cart->isReturn == 1)
+    <p style="color: red;">{{ $check->user->name }} returned the book at: {{ $check->copy->cart->updated_at }}</p>
+@else
+    <form action="{{ route('isReturnUpdate', $check->copy->id) }}" method="POST">
+        @csrf
+        <input type="hidden" name="user_id" value="{{ $check->user_id }}">
+        <button type="submit">Mark as Returned</button>
+    </form>
+@endif
+<hr>
+@endforeach
+
     </div>
+    {{-- @endforeach --}}
        
    
 @endif

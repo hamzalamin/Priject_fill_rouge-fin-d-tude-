@@ -38,7 +38,7 @@
                     </form>
                 </button>
                 
-                <button> <a href="{{ route('books.edit', $  ) }}"><img src="../img/editC.png" alt=""></a></button>
+                <button> <a href="{{ route('books.edit', $book  ) }}"><img src="../img/editC.png" alt=""></a></button>
                 <p>you want to add copies for <a href="{{ route('reservationform', $book) }}">reservation</a> ?</p>
               </div>  
             </div>

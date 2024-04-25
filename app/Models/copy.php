@@ -26,4 +26,13 @@ class copy extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function mails()
+    {
+        return $this->belongsTo(sendMail::class);
+    }
+    public function cart()
+    {
+        return $this->hasOne(cart::class, 'copy_id');
+    }
+
 }

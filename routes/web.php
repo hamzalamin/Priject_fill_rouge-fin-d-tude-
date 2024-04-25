@@ -39,11 +39,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('clientDash', [DashboardsController::class, 'ClientDash'])->name('ClientDash');
     Route::post('/cart/add', [cartController::class, 'store'])->name('cart.store');
     Route::get('/getCart', [cartController::class, 'index'])->name('getCart');
-    // Route::get('/total', [cartController::class, 'totalprice'])->name('total');
     Route::post('/checkout', [cartController::class, 'checkout'])->name('checkout');
     Route::get('ticket', [cartController::class, 'ticket'])->name('ticketForm');
     Route::get('Profile', [userController::class, 'Profile_view'])->name('Profile');
-    // Route::get('update_form_info/{id}', [userController::class, 'update_form_info'])->name('update_form_info');
     Route::post('/add-profile-pic/{id}', [userController::class, 'addProfilePic'])->name('addProfilePic');
     Route::post('/reserv-book', [operatuerController::class, 'reservBook'])->name('reservBook');
     Route::delete('cart/{cartItem}', [cartController::class, 'destroy'])->name('cart.destroy');
@@ -80,10 +78,9 @@ Route::middleware(['auth', EnsureUserHasRole::class . ':Operatuer'])->group(func
     Route::get('gettreedays', [operatuerController::class, 'gettreedays'])->name('gettreedays');
     Route::get('getisReturn', [operatuerController::class, 'isReturn'])->name('getisReturn');
     Route::get('Stock', [operatuerController::class, 'stockfinish'])->name('getStockFinish');
-    // Route::post('sendMail',[operatuerController::class, 'sendMail'])->name('sendMail');
     Route::post('Addbooks/reservation',[operatuerController::class, 'addBookreserv'])->name('addReservBook');
     Route::put('books/{book}', [operatuerController::class, 'update'])->name('books.update');
-    Route::put('isReturnUpdate/{id}', [OperatuerController::class, 'isReturnUpdate'])->name('isReturnUpdate');
+    Route::post('isReturnUpdate/{id}', [OperatuerController::class, 'isReturnUpdate'])->name('isReturnUpdate');
     Route::delete('books/{book}', [operatuerController::class, 'destroy'])->name('books.destroy');
     Route::post('sendMailToAll', [operatuerController::class, 'sendMailToAll'])->name('sendMailToAll');
 

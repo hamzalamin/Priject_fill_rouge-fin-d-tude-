@@ -248,35 +248,48 @@ class operatuerController extends Controller
                                 ->where('check', 1)
                                 ->where('updated_at', '<=', $threeDaysAgo)
                                 ->get();
-        $checkIfWeSendMail = sendMail::where('isSend', 1)->get();
+        // $checkIfWeSendMail = sendMail::where('isSend', 1)->get();
         // dd($threeDaysRecords);
-        return view('TreeDaysBook', compact('threeDaysRecords', 'checkIfWeSendMail'));
+        return view('TreeDaysBook', compact('threeDaysRecords'));
     }
 
 
     public function isReturn(){
-        $checkMail = sendMail::where('isSend' , 1)->get();
+        $checkMail = Cart::select('carts.*')
+        ->join('sendemail', function ($join) {
+            $join->on('carts.user_id', '=', 'sendemail.user_id')
+                ->on('carts.copy_id', '=', 'sendemail.copy_id');
+        })
+        ->where('carts.isReturn', 0)
+        ->where('carts.check', 1)
+        ->orderBy('carts.created_at', 'desc')
+        ->get();
+        // dd($checkMail);
         return view('isReturnBook' , compact('checkMail'));
 
     }
 
-    public function isReturnUpdate(Request $request, sendMail $id) {
-        $cart = $id->book->cart;
-        $cart->isReturn = true;
-        $cart->update();
+    public function isReturnUpdate(Request $request, $id) {
+        // dd($request->user_id);
+        // $cart = $id->copy->cart;
+        // dd($id->copy_id);
+        $cart = cart::where('user_id', $request->user_id)->Where('copy_id', $id)->get();
+
+        // dd($cart);
+        foreach ($cart as $cartItem) {
+            $cartItem->isReturn = true;
+            $cartItem->save();
+        }
     
-        // Check if $id->user->cart is not null and not empty
-        if ($id->user->cart) {
-            foreach ($id->user->cart as $index) {
-                // Check if $index->copy exists and is not null
-                if ($index->copy) {
-                    $index->copy->increment('number');
-                }
+        // dd($cart);
+        foreach ($cart as $cartItem) {
+            if ($cartItem->copy) {
+                $cartItem->copy->increment('number');
             }
         }
     
         // Save changes to $id
-        $id->save();
+       
     
         return redirect()->back()->with('success', 'Return status updated successfully.');
     }
@@ -301,7 +314,7 @@ class operatuerController extends Controller
             // Create a record in the sendMail table
             sendMail::create([
                 'user_id' => $userId,
-                'book_id' => $bookName,
+                'copy_id' => $bookName,
                 'isSend' => $request->sendingEmail,
             ]);
 
@@ -320,8 +333,11 @@ class operatuerController extends Controller
     }
 
     public function stockfinish(){
-        $booksFinish = book::where('number', '<=',  5)->get();
-        // dd();
+        $user = Auth::user();
+        $booksFinish = book::where('number', '<=',  5)
+                            ->where('user_id', $user->id)
+                            ->get();
+        // dd($booksFinish);
         return view('stockFinish' , compact('booksFinish'));
     }
 

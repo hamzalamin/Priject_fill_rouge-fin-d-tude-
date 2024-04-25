@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('sendemail', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('book_id')->constrained('books')->onDelete('cascade');
+            $table->foreignId('copy_id')->constrained('copies')->onDelete('cascade');
             $table->boolean('isSend')->default(false);
+            // $table->boolean('desplay')->default(false);
             // $table->boolean('isReturn')->default(false);
             $table->timestamps();
         });

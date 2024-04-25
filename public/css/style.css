@@ -11,6 +11,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  
 }
 
 .navbar-logo {
@@ -174,8 +175,12 @@ body {
       background: none;
       padding: 0;
       margin: 0;
-      margin-left: 5px;
+      margin-left: -15px;
   
+    }
+    .forphone{
+      margin-left: -61px;
+      margin-top: -19px;
     }
   
     .content .imagback{
@@ -188,8 +193,17 @@ body {
     .icons {
       display: flex;
       margin-left: 67px !important;
-      margin-top: -90px !important;
+      margin-top: -67px !important;
     }
+    .partner-section {
+      margin-top: 20px;
+      margin-left: -26px;
+  }
+
+    .partner-logos img {
+      width: 63px;
+      transition: transform 0.2s ease;
+  }
     .secondH_{
       display: none;
     }
@@ -281,7 +295,7 @@ body {
     background: none;
     padding: 0;
     margin: 0;
-    margin-left: 5px;
+    margin-left: -6px;
 
   }
 
@@ -314,6 +328,7 @@ body {
   background-color: #f8b500;
   transition: background-color 0.3s ease;
   margin-top: -2px;
+  margin-left: 3px;
 }
 
 .btn a:hover {
@@ -344,8 +359,8 @@ body {
   
   .about h1 {
     font-family: "Brush Script MT", cursive;
-  text-shadow: 2px 2px 4px #c0964f;
-  color: #ffa406;
+    text-shadow: 2px 2px 4px #f19800;
+    color: rgb(7, 7, 7);
   margin-bottom: 30px;
   font-size: xx-large;
   }
@@ -467,17 +482,18 @@ body {
   }
   
   .title {
-    color: #ffa406;
     margin-bottom: 20px;
     font-family: "Brush Script MT", cursive;
-    text-shadow: 2px 2px 4px #c0964f;
+    text-shadow: 2px 2px 4px #f19800;
+    color: rgb(7, 7, 7);
     text-align: center; 
   }
   .books h3 {
-    color: #ffa406;
+    /* color: #ffa406; */
     margin-bottom: 30px;
     font-family: "Brush Script MT", cursive;
-    text-shadow: 2px 2px 4px #c0964f;
+    text-shadow: 2px 2px 4px #f19800;
+    color: rgb(7, 7, 7);
     text-align: center; 
     font-size: xx-large;
   }
@@ -1037,8 +1053,8 @@ tr:hover td {
 
 .about_ h2 {
   font-family: "Brush Script MT", cursive;
-  text-shadow: 2px 2px 4px #c0964f;
-  color: #ffa406;
+  text-shadow: 2px 2px 4px #f19800;
+  color: rgb(7, 7, 7);
   margin-bottom: 30px;
   font-size: xx-large;
 }
@@ -1071,6 +1087,10 @@ tr:hover td {
   background-repeat: no-repeat;
   background-position: 700px;
 }
+.hs{
+  font-family: "Brush Script MT", cursive;
+  text-shadow: 2px 2px 4px #f19800;
+} 
 
 /* .form_section form {
   width: 300px; 
@@ -1084,7 +1104,7 @@ tr:hover td {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 0 10px #ffe359;
-  margin-top: 425px;
+  margin-top: 682px;
 }
 
 .form_section form label {
@@ -1626,6 +1646,9 @@ margin-left: 606px;
   
   
   }
+  /* .homenav{
+    margin-left: 10px;
+  } */
   .success p {
     margin-left: 50px;
   }
@@ -1694,6 +1717,9 @@ margin-left: 606px;
     margin-top: 24px;
     box-shadow: 0 0 10px #ffe359;
 }
+.dozihna{
+  margin-right: 19px;
+}
 
 }
 
@@ -1726,6 +1752,16 @@ margin-left: 606px;
     margin-right: 44px;
 
   }
+  .footer-column h3 {
+    color: #ffa406;
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-family: "Brush Script MT", cursive;
+    margin-left: -19px;
+}
+.imaila{
+  display: none;
+}
   .burger-menu-icon .bara {
       flex-direction: column;
       cursor: pointer;
