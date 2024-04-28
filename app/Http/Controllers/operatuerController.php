@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\book;
 use App\Models\cart;
 use App\Models\copy;
 use App\Models\User;
 use App\Models\category;
 use App\Models\sendMail;
-use Exception;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Database\QueryException;
 
 class operatuerController extends Controller
 {
@@ -85,21 +86,33 @@ class operatuerController extends Controller
     }
     public function addBookreserv(Request $request){
         // dd($request);
-        $user = auth()->user()->id;
-        $request->validate([
-            'book_id' => 'required',
-            'price' => 'required|numeric|gt:0',
-            'number' => 'required|integer',
+        // if($request->book_id)
+        try {
+            $user = auth()->user()->id;
+            // dd($user);
+            $request->validate([
+                'book_id' => 'required',
+                'price_of_reserv' => 'required|numeric|gt:0',
+                'number' => 'required|integer',
+                // 'user_id' => 'required|integer',
+            ]);
             
-        ]);
-        copy::create([
-            'book_id' => $request->book_id,
-            'price_of_reserv' => $request->price_of_reserv,
-            'number' => $request->number,
-            'user_id' => $user,
-        ]);
-        return redirect()->route('gestion_of_books')->with('success', 'book updated successfully');
-
+            Copy::create([
+                'book_id' => $request->book_id,
+                'price_of_reserv' => $request->price_of_reserv,
+                'number' => $request->number,
+                'user_id' => $user,
+            ]);
+        
+            return redirect()->route('gestion_of_books')->with('success', 'Book updated successfully');
+        } catch (QueryException $exception) {
+            return back()->withInput()->with('error', 'This copy is already on data base just go to update on it.');
+        }
+    }
+    public function Gestion_copys(){
+        $user = auth()->user()->id;
+        $copysBooks = copy::where('user_id', $user)->get();
+        return view('Operatuer_funcs.gestion_copys', compact('copysBooks'));
     }
 
     /**
@@ -118,6 +131,12 @@ class operatuerController extends Controller
         //
         $categorys = category::get();
         return view('Operatuer_funcs.editBook', compact('book', 'categorys'));
+    }
+    public function copyEditForm(Request $request, copy $copy)
+    {
+        //
+        // $categorys = category::get();
+        return view('Operatuer_funcs.editcopy', compact('copy'));
     }
     public function reservationform(Request $request, Book $book)
     {
@@ -151,7 +170,21 @@ class operatuerController extends Controller
 
         return redirect()->route('gestion_of_books')->with('success', 'Book updated successfully');
     }
-    
+    public function copyUpdate(Request $request, copy $copy)
+    {
+        // complet the logic fdar
+        // dd($request);
+        $request->validate([
+            'number' => 'required',
+            'price_of_reserv' => 'required',
+        ]);
+        $copy->number = $request->number;
+        $copy->price_of_reserv = $request->price_of_reserv;
+
+        $copy->save();
+        return redirect()->route('Gestion_copys')->with('success', 'copy updated successfully');
+
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -161,6 +194,12 @@ class operatuerController extends Controller
         $book->delete();
 
         return redirect()->route('gestion_of_books')->with('success', 'Book deleted successfully');
+    }
+    public function deleteCopy(copy $copy)
+    {
+        $copy->delete();
+
+        return redirect()->route('Gestion_copys')->with('success', 'Book deleted successfully');
     }
 
     public function getAllBooks1(){
@@ -172,7 +211,7 @@ class operatuerController extends Controller
 
     public function getAllBooks(){
         $books = Book::orderBy('id', 'desc')->take(4)->get();
-        $categorys = category::orderBy('id', 'desc')->take(15)->get();
+        $categorys = category::orderBy('id', 'desc')->take(7)->get();
         $copys = copy::get();
 
         return view('welcome', compact('books', 'copys', 'categorys'));
@@ -181,21 +220,23 @@ class operatuerController extends Controller
     
 
     // function for count lktoba 
-    public function count(){
+    // public function count(){
         
-        return view('welcome', compact('resultsOfCount'));
+    //     return view('welcome', compact('resultsOfCount'));
 
-    }
+    // }
 
     // function dial reservation dbook
     public function reservBook(Request $request) {
         // dd($request);
         $currentDateTime = now();
         $threeDaysAgo = $currentDateTime->subDays(3);
-        $bookId = $request->input('book_id');
-        $book = Book::findOrFail($bookId);
+
+        // $bookId = $request->input('book_id');
+        // $book = Book::findOrFail($bookId);
         $user = Auth::user();
         $copyid = $request->input('copy_id');
+
         $blackListe = cart::where('user_id', $user->id)
                             ->where('copy_id', $copyid)
                             ->where('isReturn', 0)

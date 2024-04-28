@@ -65,4 +65,4 @@
           </div>
         </nav>
           
-        <script src="{{ asset('jss/main1.js') }}"></script>
+        {{-- <script src="{{ asset('jss/main1.js') }}"></script> --}}

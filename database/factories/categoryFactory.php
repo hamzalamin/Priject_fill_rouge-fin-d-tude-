@@ -28,7 +28,7 @@ class categoryFactory extends Factory
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->sentence,
-            'image' => 'category_img/VougPIk6NOIl7Pypj6l7NcCX0G94dNzv5G5KLWZJ.png',
+            'image' => 'category_img/qL0fDmzY9MBTVVyQ1XdJC3KoQfY3vpYkzdewDlgF.jpg',
         ];
         
 

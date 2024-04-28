@@ -358,7 +358,7 @@ body {
   
   
   .about h1 {
-    font-family: "Brush Script MT", cursive;
+    /* font-family: "Brush Script MT", cursive; */
     text-shadow: 2px 2px 4px #f19800;
     color: rgb(7, 7, 7);
   margin-bottom: 30px;
@@ -483,7 +483,7 @@ body {
   
   .title {
     margin-bottom: 20px;
-    font-family: "Brush Script MT", cursive;
+    /* font-family: "Brush Script MT", cursive; */
     text-shadow: 2px 2px 4px #f19800;
     color: rgb(7, 7, 7);
     text-align: center; 
@@ -491,7 +491,7 @@ body {
   .books h3 {
     /* color: #ffa406; */
     margin-bottom: 30px;
-    font-family: "Brush Script MT", cursive;
+    /* font-family: "Brush Script MT", cursive; */
     text-shadow: 2px 2px 4px #f19800;
     color: rgb(7, 7, 7);
     text-align: center; 
@@ -628,7 +628,7 @@ body {
     color: #ffa406;
     font-size: 18px;
     margin-bottom: 15px;
-    font-family: "Brush Script MT", cursive;
+    /* font-family: "Brush Script MT", cursive; */
   }
   
   .footer-column p {
@@ -704,7 +704,7 @@ body {
 
 }
 .All_books h2{
-  font-family: "Brush Script MT", cursive;
+  /* font-family: "Brush Script MT", cursive; */
   text-shadow: 2px 2px 4px #ffaa07;
   color: #040404;
 }
@@ -714,7 +714,7 @@ body {
   margin-bottom: -100px;
   margin-top: 38px;
   margin-left: 80px;
-  font-family: "Brush Script MT", cursive;
+  /* font-family: "Brush Script MT", cursive; */
   text-shadow: 2px 2px 4px #c0964f;
   color: #ffa406;
 }
@@ -907,7 +907,7 @@ tr:hover td {
 .statistique {
   display: flex;
   justify-content: center; /* Center the items horizontally */
-  margin-top: 90px;
+   margin-top: -143px;
   margin-left: 227px;
 }
 .statistiques-cont {
@@ -955,13 +955,19 @@ tr:hover td {
   margin-right: -20px;
   z-index: 1;
 }
+.statistique_s{
 
+    display: flex;
+    justify-content: center;
+    margin-top: -252px;
+    margin-left: 227px;
+}
 .card-container_category {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-left: 30px;
-    margin-top: -94px;
+  margin-top: 185px;
 }
 
 .card_category {
@@ -1052,7 +1058,7 @@ tr:hover td {
 }
 
 .about_ h2 {
-  font-family: "Brush Script MT", cursive;
+  /* font-family: "Brush Script MT", cursive; */
   text-shadow: 2px 2px 4px #f19800;
   color: rgb(7, 7, 7);
   margin-bottom: 30px;
@@ -1088,23 +1094,86 @@ tr:hover td {
   background-position: 700px;
 }
 .hs{
-  font-family: "Brush Script MT", cursive;
+  /* font-family: "Brush Script MT", cursive; */
   text-shadow: 2px 2px 4px #f19800;
 } 
 
-/* .form_section form {
-  width: 300px; 
-  padding: 20px;
-  background-color: #f0f0f0;
-  border-radius: 10px;
-} */
+
+.form_section_ form {
+    width: 487px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ffe359;
+    margin-top: 281px;
+    margin-left: 421px;
+}
+
 .form_section form {
   width: 300px;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 0 10px #ffe359;
-  margin-top: 682px;
+  margin-top: 330px;
+}
+
+.form_section_ form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-family: "Brush Script MT", cursive;
+}
+
+.form_section_ form input[type="text"],
+.form_section_ form input[type="password"],
+.form_section_ form input[type="email"],
+.form_section_ form input[type="float"],
+.form_section_ form input[type="number"],
+.form_section_ form select[type="options"],
+.form_section_ form input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Ensure the padding doesn't affect the width */
+}
+
+.form_section_ form input[type="file"] {
+  margin-bottom: 20px;
+}
+
+.form_section_ form input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff7f50; /* Orange color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form_section_ form input[type="submit"]:hover {
+  background-color: #e64a19; /* Darker orange color on hover */
+}
+.form_section_ form button {
+  padding: 5px;
+  width: 300px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ffa406; 
+  color: whitesmoke;
+}
+
+.form_section form {
+  width: 300px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ffe359;
+  margin-top: 330px;
 }
 
 .form_section form label {
@@ -1756,7 +1825,7 @@ margin-left: 606px;
     color: #ffa406;
     font-size: 18px;
     margin-bottom: 15px;
-    font-family: "Brush Script MT", cursive;
+    /* font-family: "Brush Script MT", cursive; */
     margin-left: -19px;
 }
 .imaila{
@@ -1848,6 +1917,11 @@ margin-left: 606px;
     border-radius: 5px !important;
     width: 66% !important;
 }
+.card-container_category_s {
+  margin-left: -234px;
+  margin-top: 170.9px;
+  display: block;
+}
 
 
 }
@@ -1859,6 +1933,25 @@ margin-left: 606px;
     flex-wrap: wrap;
 }
 
+.card-container_ {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 524px;
+  margin-left: 74px;
+  justify-content: space-between;
+  gap: 2px;
+}
+
+.card_ {
+  width: 175px;
+  border: 0.5px solid #ccc;
+  border-radius: 13px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.card_ img{
+  width: 188px;
+}
 .service-card {
     width: 300px;
     padding: 20px;

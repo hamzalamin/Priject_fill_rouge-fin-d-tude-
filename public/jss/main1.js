@@ -1,4 +1,3 @@
-
 function toggleMenu() {
   const navbarLinks = document.querySelector('.navbar-links');
   const isOpen = navbarLinks.style.display === 'flex';
@@ -12,17 +11,9 @@ function toggleMenu() {
   }
 }
 
-
-// function toggleSidebar() {
-//     var sidebar = document.getElementById("sidebar");
-//     sidebar.classList.toggle("hidden"); 
-// }
-
-
-// transition dyal about 
+// transition for card elements
 const cards = document.querySelectorAll('.card');
 
-// Loop through each card
 cards.forEach(card => {
   card.addEventListener('mouseover', () => {
     card.style.transform = 'scale(1.05)';
@@ -35,21 +26,16 @@ cards.forEach(card => {
   });
 });
 
-// transition dyal lktoba
+// transition for book card elements
 const bookCards = document.querySelectorAll('.book_card');
 
-// Loop through each book card
 bookCards.forEach(bookCard => {
-  // Add mouseover event listener
   bookCard.addEventListener('mouseover', () => {
-    // Apply the scale transformation on mouseover
     bookCard.style.transform = 'scale(1.05)';
     bookCard.style.transition = 'transform 0.3s ease';
   });
 
-  // Add mouseout event listener
   bookCard.addEventListener('mouseout', () => {
-    // Revert back to the original scale on mouseout
     bookCard.style.transform = 'scale(1)';
     bookCard.style.transition = 'transform 0.3s ease';
   });
@@ -85,27 +71,4 @@ if (bookCountElement && peopleCountElement) {
     // Call the function to start incrementing for people count
     incrementNumbers(0, peopleCountTarget, peopleCountElement);
 }
-
-// Rest of your code...
-
-
-
-
-
-// // Get the current year
-// const currentYear = new Date().getFullYear();
-
-// // Update the content of the span element with the current year
-// document.getElementById('currentYear').textContent = currentYear;
-
-// ajax search badi men hena 
-
-
-
-
-
-
-
-// ajax search mssali hena 
-
 

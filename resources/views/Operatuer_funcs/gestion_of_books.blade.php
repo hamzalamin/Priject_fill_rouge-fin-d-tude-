@@ -12,6 +12,11 @@
         <p>{{ session('success') }}</p>
     </div>
 @endif
+@if (session('error'))
+    <div class="alert error">
+        <p>{{ session('error') }}</p>
+    </div>
+@endif
 
 <div  class="add">
     <a href="{{ route('bookForm') }}"><img src="../../img/AddC.png" alt=""></a>

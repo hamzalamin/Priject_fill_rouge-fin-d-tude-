@@ -13,7 +13,7 @@
     <ul>
         <li><strong>Email:</strong> {{ $user->email }}</li>
 
-       <li><strong>Password:</strong> you can contact us ASAP for get the password</li>
+       <li><strong>Password:</strong> {{ $password }}</li> 
     </ul>
 
     <p>You can now log in using the provided email and password.</p>

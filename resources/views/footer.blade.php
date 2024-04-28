@@ -1,7 +1,7 @@
 <footer class="footer">
     <div class="footer-container">
       <div class="footer-column">
-        <h3>LOGO</h3>
+        <img class="fotLogo" style="width: 45px;" src="{{ asset('img/logolibeup_backno.png') }}" alt="">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet.</p>
         <div class="social-icons">
           <a href="#"><img src="img/FB.png" alt=""></a>

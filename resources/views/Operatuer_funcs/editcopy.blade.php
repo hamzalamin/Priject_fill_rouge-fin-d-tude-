@@ -1,3 +1,4 @@
+
 @include('navbar')
 <style>
     .side_bar.hidden {
@@ -17,16 +18,16 @@
 <div class="burger-menu-icon" onclick="toggleSidebar()">
     <span class="bara">Dashboard</span>
 </div>
+{{-- <h1 style="display: flex; justify-content: center; margin-bottom: -100px; margin-top: 100px; color: brown; margin-left: 80px;">Update Book</h1> --}}
 <section class="form_section">
-    <form action="{{ route('AddCategory') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('copys.update', $copy) }}" method="POST" enctype="multipart/form-data">
         @csrf
-            <label for="">Category name</label>
-            <input type="text" name="name">
-            <label for="">Category description</label>
-            <input type="text" name="description">
-            <label for="">Category image</label>
-            <input type="file" name="image">
-            <button type="submit">ADD</button>
+        @method('PUT')
+            <label for="">Number Of Stock</label>
+            <input type="number" name="number" value="{{ old('number', $copy->number) }}" required>
+            <label for="">Price</label>
+            <input type="float" name="price_of_reserv" value="{{ old('price', $copy->price_of_reserv) }}" required>
+            <button type="submit">Update</button>
         </form>
         
 </section>

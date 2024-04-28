@@ -15,6 +15,7 @@
         <div class="gestion">           
             @if (auth()->check() && auth()->user()->hasRole('Operatuer'))
                 <a href="{{ route('gestion_of_books') }}">Gestion of books</a>
+                <a href="{{ route('Gestion_copys') }}">Gestion of Copys</a>
                 <a href="{{ route('gettreedays') }}">Send Mails</a>
                 <a href="{{ route('getisReturn') }}">They have Return Books</a>
                 <a href="{{ route('getStockFinish') }}">Stock</a>

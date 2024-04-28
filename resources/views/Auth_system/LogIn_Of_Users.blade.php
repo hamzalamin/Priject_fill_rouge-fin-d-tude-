@@ -1,5 +1,15 @@
 @include('navbar')
+@if (session('success'))
+    <div class="success">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
 
+@if (session('error'))
+    <div class="error">
+        <p>{{ session('error') }}</p>
+    </div>
+@endif
     <div class="login-container">
         <h2>Login</h2>
         <form action="{{ route('loginOfUser') }}" method="post">

@@ -15,7 +15,7 @@
 @else
 @foreach ($ticket as $tic)
 <section class="ticket">
-    <h2>TICKET {{ $tic->id }}</h2>
+    <h2>TICKET REF #14HL{{ $tic->id }}F14</h2>
     <p>Thank you for using our service!</p>
 
     <hr style="color: white; margin-bottom:30px">

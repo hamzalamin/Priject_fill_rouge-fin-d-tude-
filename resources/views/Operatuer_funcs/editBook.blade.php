@@ -5,6 +5,16 @@
     display: none;
 }
 </style>
+@if (session('success'))
+    <div class="alert success">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert error">
+        <p>{{ session('error') }}</p>
+    </div>
+@endif
 <div class="burger-menu-icon" onclick="toggleSidebar()">
     <span class="bara">Dashboard</span>
 </div>

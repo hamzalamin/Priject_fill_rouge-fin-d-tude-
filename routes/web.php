@@ -13,6 +13,7 @@ use App\Http\Controllers\operatuerController;
 use App\Http\Controllers\DashboardsController;
 use App\Http\Controllers\ReservationController;
 
+
 // Route::get('/', function () {
 //     return view('w   elcome');
 // });
@@ -23,19 +24,15 @@ Route::get('single/Page/{book}', [operatuerController::class, 'singlePage'])->na
 
 Route::post('/search-books', [cartController::class, 'searchBooks']);
 
-
-
-// Route::get('/nav', function(){
-//     return view('navbar');
-// });
-
-Route::get('/register', [userController::class, 'index'])->name('register');
-Route::post('/Regester', [userController::class, 'Regester'])->name('Regester');
-Route::get('/login', [userController::class, 'create'])->name('login');
-Route::post('/loginOfUser', [userController::class, 'loginOfUser'])->name('loginOfUser');
-Route::post('/logout', [userController::class, 'logout'])->name('logout');
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [userController::class, 'index'])->name('register');
+    Route::post('/Regester', [userController::class, 'Regester'])->name('Regester');
+    Route::get('/login', [userController::class, 'create'])->name('login');
+    Route::post('/loginOfUser', [userController::class, 'loginOfUser'])->name('loginOfUser');
+});
 
 Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', [userController::class, 'logout'])->name('logout');
     Route::get('clientDash', [DashboardsController::class, 'ClientDash'])->name('ClientDash');
     Route::post('/cart/add', [cartController::class, 'store'])->name('cart.store');
     Route::get('/getCart', [cartController::class, 'index'])->name('getCart');
@@ -70,18 +67,23 @@ Route::middleware(['auth', EnsureUserHasRole::class . ':Admin'])->group(function
 
 Route::middleware(['auth', EnsureUserHasRole::class . ':Operatuer'])->group(function () {
     Route::get('OperatuerDash', [DashboardsController::class, 'OpertuerDash'])->name('OperatuerDash');
+    Route::get('Gestion_copys', [operatuerController::class, 'Gestion_copys'])->name('Gestion_copys');
     Route::get('bookForm', [operatuerController::class, 'index'])->name('bookForm');
     Route::get('gestion/books', [operatuerController::class, 'index1'])->name('gestion_of_books');
     Route::post('addBook',[operatuerController::class, 'store'])->name('addBook');
     Route::get('books/{book}/edit', [operatuerController::class, 'edit'])->name('books.edit');
+    Route::get('UpdateCopy/{copy}', [operatuerController::class, 'copyEditForm'])->name('UpdateCopy');
     Route::get('reserv/{book}', [operatuerController::class, 'reservationform'])->name('reservationform');
     Route::get('gettreedays', [operatuerController::class, 'gettreedays'])->name('gettreedays');
     Route::get('getisReturn', [operatuerController::class, 'isReturn'])->name('getisReturn');
     Route::get('Stock', [operatuerController::class, 'stockfinish'])->name('getStockFinish');
     Route::post('Addbooks/reservation',[operatuerController::class, 'addBookreserv'])->name('addReservBook');
     Route::put('books/{book}', [operatuerController::class, 'update'])->name('books.update');
+    Route::put('copys/{copy}', [operatuerController::class, 'copyUpdate'])->name('copys.update');
     Route::post('isReturnUpdate/{id}', [OperatuerController::class, 'isReturnUpdate'])->name('isReturnUpdate');
     Route::delete('books/{book}', [operatuerController::class, 'destroy'])->name('books.destroy');
+    Route::delete('deleteCopy/{copy}', [operatuerController::class, 'deleteCopy'])->name('deleteCopy');
+
     Route::post('sendMailToAll', [operatuerController::class, 'sendMailToAll'])->name('sendMailToAll');
 
 });

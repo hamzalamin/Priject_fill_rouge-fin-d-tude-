@@ -7,14 +7,20 @@
     display: none;
 }
 </style>
-<div class="burger-menu-icon" onclick="toggleSidebar()">
-    <span class="bara">Dashboard</span>
-</div>
 @if (session('success'))
     <div class="alert success">
         <p>{{ session('success') }}</p>
     </div>
 @endif
+@if (session('error'))
+    <div class="alert error">
+        <p>{{ session('error') }}</p>
+    </div>
+@endif
+<div class="burger-menu-icon" onclick="toggleSidebar()">
+    <span class="bara">Dashboard</span>
+</div>
+
 <div  class="add">
     <a href="{{ route('CategoryForm') }}"><img src="../img/AddC.png" alt=""></a>
     </div>

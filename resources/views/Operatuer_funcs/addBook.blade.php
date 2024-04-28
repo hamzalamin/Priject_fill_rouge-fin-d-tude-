@@ -4,11 +4,21 @@
     display: none;
 }
 </style>
+@if (session('success'))
+    <div class="alert success">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert error">
+        <p>{{ session('error') }}</p>
+    </div>
+@endif
 <div class="burger-menu-icon" onclick="toggleSidebar()">
     <span class="bara">Dashboard</span>
 </div>
-<h1 style="display: flex; justify-content: center; margin-bottom: -100px; margin-top: 100px; color: brown; margin-left: 80px;">Add Book</h1>
-<section class="form_section">
+{{-- <h1 style="display: flex; justify-content: center; margin-bottom: -100px; margin-top: 100px; color: brown; margin-left: 80px;">Add Book</h1> --}}
+<section class="form_section_">
     <form action="{{ route('addBook') }}" method="POST" enctype="multipart/form-data">
         @csrf
             <label for="">Book Title</label>

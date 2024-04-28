@@ -4,6 +4,16 @@
     display: none;
 }
 </style>
+@if (session('success'))
+    <div class="alert success">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert error">
+        <p>{{ session('error') }}</p>
+    </div>
+@endif
 <div class="burger-menu-icon" onclick="toggleSidebar()">
     <span class="bara">Dashboard</span>
 </div>
@@ -14,8 +24,8 @@
         @method('PUT')
             <label for="">User name</label>
             <input type="text" name="name" value="{{ $user->name }}" required>
-            <label for="">Category description</label>
-            <input type="text" name="description" value="{{ $user->email }}" required>
+            <label for="">User email</label>
+            <input type="text" name="email" value="{{ $user->email }}" required>
             <button type="submit">EDIT</button>
         </form>
         

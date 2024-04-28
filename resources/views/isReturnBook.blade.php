@@ -1,4 +1,15 @@
 @include('navbar')
+@if (session('success'))
+    <div class="success">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="error">
+        <p>{{ session('error') }}</p>
+    </div>
+@endif
 <style>
 /* .container_of_isreturn{
     margin-left: 279px;

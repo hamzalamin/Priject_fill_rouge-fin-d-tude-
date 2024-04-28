@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('copies', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('book_id');
+            $table->unsignedBigInteger('book_id')->unique();
             $table->float('price_of_reserv');
             $table->integer('number')->default(0);
             $table->timestamps();

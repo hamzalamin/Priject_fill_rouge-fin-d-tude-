@@ -48,7 +48,7 @@
     <h2 id="title">Popular categorys</h2>
     @foreach ($categorys as $category)
     <div class="category">
-      <img src="{{ asset('storage/' . $category->image) }}" alt="#">
+      <img src="{{ asset('storage/' . $category->image) }}" alt="XX">
       {{ $category->name }}
     </div>
     @endforeach

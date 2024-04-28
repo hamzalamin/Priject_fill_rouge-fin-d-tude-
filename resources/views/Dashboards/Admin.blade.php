@@ -21,7 +21,7 @@
 </div>
 <section class="statistiques-cont">
     <div class="statistic-item">
-        <h3>Total Users</h3>
+        <h3>Total Operatuers</h3>
         <p>{{ $users }}</p>
     </div>
     <div class="statistic-item">

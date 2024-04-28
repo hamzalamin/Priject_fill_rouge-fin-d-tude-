@@ -17,6 +17,7 @@ class AdminController extends Controller
         $users = User::where('id', '!=', 1)->paginate(3); 
         return view('Admin_funcs.gestionOfOperatuers', compact('users'));
     }
+
     public function store(Request $request){
         $request->validate([
             'name' => 'required',
@@ -32,15 +33,15 @@ class AdminController extends Controller
             'password' => $request->password,
         ]);
     
-        $this->sendOperatorCredentialsEmail($user);
+        $this->sendOperatorCredentialsEmail($user, $request->password);
         
         return redirect()->route('gestionofOperatuers')->with('success', 'User created successfully');
     }
     
-    private function sendOperatorCredentialsEmail($user)
+    private function sendOperatorCredentialsEmail($user , $password)
     {
-        Mail::send('emails.mail_operatuer', ['user' => $user], function ($message) use ($user) {
-            $message->to($user->email, $user->name, $user->password)
+        Mail::send('emails.mail_operatuer', ['user' => $user, 'password' => $password], function ($message) use ($user) {
+            $message->to($user->email, $user->name)
                 ->subject('Your Operator Credentials');
         });
     }
@@ -55,6 +56,7 @@ class AdminController extends Controller
     public function update(Request $request, User $user)
     {
         // Validate the request
+        // dd($request);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,

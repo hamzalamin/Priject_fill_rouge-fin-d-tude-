@@ -44,3 +44,4 @@
     @endforeach
   </div>
 
+  <script src="{{ asset('jss/main1.js') }}"></script>
