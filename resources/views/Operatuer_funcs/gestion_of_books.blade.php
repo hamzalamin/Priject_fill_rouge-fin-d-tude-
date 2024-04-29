@@ -22,7 +22,7 @@
     <a href="{{ route('bookForm') }}"><img src="../../img/AddC.png" alt=""></a>
 </div>
 <section class="statistique">
-    <div class="card-container_category">
+    <div class="card-container_categorysi">
         @foreach ($books as $book)
         <div class="card">
             <img src="{{ asset('storage/' . $book->image) }}" alt="Atomic Habits">

@@ -36,23 +36,7 @@
         </form> 
       </div>
     </div>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const checkboxes = document.querySelectorAll('.category-checkbox');
-    
-    checkboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('click', function() {
-            const label = this.nextElementSibling;
-            if (this.checked) {
-                label.classList.add('selected');
-            } else {
-                label.classList.remove('selected');
-            }
-        });
-    });
-});
 
-</script>
 </section> 
 
 
@@ -103,7 +87,23 @@
       </ul>
   </div>
   </section> 
-
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const checkboxes = document.querySelectorAll('.category-checkbox');
+      
+      checkboxes.forEach(function(checkbox) {
+          checkbox.addEventListener('click', function() {
+              const label = this.nextElementSibling;
+              if (this.checked) {
+                  label.classList.add('selected');
+              } else {
+                  label.classList.remove('selected');
+              }
+          });
+      });
+  });
+  
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <section class="books" style="margin-top: -16px;">

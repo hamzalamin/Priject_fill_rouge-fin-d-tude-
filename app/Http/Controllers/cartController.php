@@ -46,6 +46,7 @@ class cartController extends Controller
 
             $name = $request->input('name');
             $categories = $request->input('categories');
+            // dd($categories);
 
             $copiesQuery = book::query();
 

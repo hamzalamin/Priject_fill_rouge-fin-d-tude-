@@ -37,17 +37,9 @@
 @foreach ($checkMail as $check)
     <p>User: {{ $check->user->name }}</p>
     <p>Book: {{ $check->copy->book->name }}</p>
-    <p>isReturn: {{ $check->copy->cart->isReturn }}</p> 
+    {{-- <p>isReturn: {{ $check->copy->cart->isReturn }}</p>  --}}
 
-@if ($check->isSend == 1)
-    <p>You sent an email to {{ $check->user->name }} at: {{ $check->updated_at }}</p>
-@else
-    <p>You haven't sent an email to {{ $check->user->name }} yet.</p>
-@endif
-
-    <p>Conditional evaluation: {{ $check->copy->cart->isReturn  == 1 ? 'true' : 'false' }}</p>
-
-@if ($check->copy->cart->isReturn == 1)
+@if ($check->isReturn == 1)
     <p style="color: red;">{{ $check->user->name }} returned the book at: {{ $check->copy->cart->updated_at }}</p>
 @else
     <form action="{{ route('isReturnUpdate', $check->copy->id) }}" method="POST">
